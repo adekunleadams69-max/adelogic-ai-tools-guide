@@ -20,6 +20,8 @@
       --primary-glow: rgba(59, 130, 246, 0.25);
       --primary-hover: #2563eb;
       --tag-bg: rgba(255, 255, 255, 0.06);
+      --input-bg: rgba(10, 15, 29, 0.8);
+      --box-inner: rgba(15, 23, 42, 0.6);
       --accent-chat: #38bdf8;
       --accent-maker: #fb923c;
       --accent-auto: #2dd4bf;
@@ -28,6 +30,114 @@
       --radius: 16px;
       --radius-lg: 24px;
       --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --card-border: rgba(0, 0, 0, 0.08);
+      --card-hover: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-glow: rgba(37, 99, 235, 0.2);
+      --primary-hover: #1d4ed8;
+      --tag-bg: rgba(0, 0, 0, 0.05);
+      --input-bg: #ffffff;
+      --box-inner: #f1f5f9;
+      --accent-chat: #0284c7;
+      --accent-maker: #ea580c;
+      --accent-auto: #0d9488;
+      --accent-web: #9333ea;
+      --accent-voice: #db2777;
+    }
+
+    [data-theme="light"] body {
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(37, 99, 235, 0.08), transparent),
+        radial-gradient(circle at 100% 100%, rgba(147, 51, 234, 0.05), transparent);
+    }
+
+    [data-theme="light"] h1 {
+      background: linear-gradient(135deg, #0f172a 40%, #475569 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    [data-theme="light"] .tool-title,
+    [data-theme="light"] .section-header h2,
+    [data-theme="light"] .section-header h3,
+    [data-theme="light"] .question-title,
+    [data-theme="light"] #res-agent-title {
+      color: #0f172a !important;
+    }
+
+    [data-theme="light"] .tool-desc,
+    [data-theme="light"] .job-text,
+    [data-theme="light"] .form-group label {
+      color: #334155 !important;
+    }
+
+    [data-theme="light"] .controls,
+    [data-theme="light"] .view-switcher {
+      background: rgba(255, 255, 255, 0.95);
+      border-color: rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    [data-theme="light"] .badge-day {
+      background: rgba(0, 0, 0, 0.06);
+      color: #475569;
+    }
+
+    [data-theme="light"] .form-input,
+    [data-theme="light"] .form-textarea,
+    [data-theme="light"] .search-box input {
+      background: #ffffff;
+      color: #0f172a;
+      border-color: #cbd5e1;
+    }
+
+    [data-theme="light"] .radio-pill,
+    [data-theme="light"] .job-checkbox-card,
+    [data-theme="light"] .question-block,
+    [data-theme="light"] .order-step,
+    [data-theme="light"] .free-guide-card,
+    [data-theme="light"] .saved-plan-item {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+      color: #334155;
+    }
+
+    [data-theme="light"] .rule-card {
+      background: #ffffff;
+      border-color: #e2e8f0;
+    }
+
+    [data-theme="light"] .rule-card h3 {
+      color: #0f172a;
+    }
+
+    [data-theme="light"] .btn-secondary {
+      background: #f1f5f9;
+      color: #334155;
+      border-color: #cbd5e1;
+    }
+
+    [data-theme="light"] .btn-secondary:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    [data-theme="light"] .matrix-table th {
+      background: #f1f5f9;
+      color: #475569;
+      border-bottom-color: #e2e8f0;
+    }
+
+    [data-theme="light"] .matrix-table td {
+      color: #1e293b;
+      border-bottom-color: #f1f5f9;
     }
 
     * {
@@ -49,10 +159,129 @@
       background-attachment: fixed;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2.5rem 1.5rem;
+    /* Header Top Row */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .theme-toggle-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+      backdrop-filter: blur(8px);
+    }
+
+    .theme-toggle-btn:hover {
+      border-color: var(--primary);
+    }
+
+    /* Pricing & Monetization Section */
+    .pricing-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 2.2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-tier-box {
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      background: var(--box-inner);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .pricing-price {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text);
+      margin: 0.75rem 0;
+      display: flex;
+      align-items: baseline;
+      gap: 0.35rem;
+    }
+
+    .pricing-price span {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .pricing-select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      background: var(--input-bg);
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 600;
+      outline: none;
+      font-family: inherit;
+      cursor: pointer;
+      margin-bottom: 1.25rem;
+    }
+
+    .pricing-features-list {
+      list-style: none;
+      margin: 1.25rem 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .pricing-features-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .pricing-features-list li::before {
+      content: "✓";
+      color: #34d399;
+      font-weight: 800;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 1.5rem;
+    }
+
+    .modal-window {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 2.2rem;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      position: relative;
     }
 
     header {
@@ -795,6 +1024,22 @@
 <body>
 
   <div class="container">
+    <!-- Top Nav with Theme Switcher -->
+    <div class="top-nav no-print">
+      <div style="font-weight: 800; font-size: 1.15rem; color: var(--text); display: flex; align-items: center; gap: 0.5rem;">
+        <span style="font-size: 1.35rem;">🚀</span> Adelogic AI
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <button class="btn-secondary" id="nav-pricing-btn" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+          💎 Get Full Access
+        </button>
+        <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Light/Dark Mode">
+          <span id="theme-icon">☀️</span>
+          <span id="theme-text">Light Mode</span>
+        </button>
+      </div>
+    </div>
+
     <header>
       <div class="badge">Plain-English AI Reference</div>
       <h1>Adelogic AI Tools Guide</h1>
@@ -806,6 +1051,7 @@
       <div class="view-switcher no-print">
         <button class="view-btn active" id="btn-tab-planner">🎯 Interactive Project Planner</button>
         <button class="view-btn" id="btn-tab-directory">📚 Complete Tools Directory</button>
+        <button class="view-btn" id="btn-tab-pricing">💎 Pricing & Access</button>
       </div>
     </header>
 
@@ -1058,6 +1304,118 @@
         </div>
       </section>
 
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW 3: PRICING & MONETIZATION -->
+    <!-- ========================================== -->
+    <div id="pricing-view" style="display: none;">
+      <section class="pricing-card" style="margin-bottom: 2.5rem; text-align: center;">
+        <div class="badge">Monetized Access</div>
+        <h2 style="font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; color: var(--text); margin-bottom: 0.75rem;">
+          Get Premium Access to Adelogic AI
+        </h2>
+        <p style="color: var(--text-muted); max-width: 650px; margin: 0 auto 2.5rem; font-size: 1.05rem;">
+          Choose the access model that fits your needs: pay as you go for single project blueprints, or unlock lifetime unlimited access forever.
+        </p>
+
+        <!-- Dropdown Selector Card -->
+        <div style="max-width: 520px; margin: 0 auto; text-align: left;" class="pricing-tier-box">
+          <label style="font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; display: block;">
+            Select Your Purchase Option:
+          </label>
+          <select id="pricing-plan-select" class="pricing-select">
+            <option value="per-use">Per use purchase ($4.99 / plan)</option>
+            <option value="lifetime" selected>One time life purchase ($49 one-time)</option>
+          </select>
+
+          <!-- Dynamic Pricing Display -->
+          <div style="border-top: 1px solid var(--card-border); padding-top: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <div>
+                <h3 id="plan-name-display" style="font-size: 1.35rem; font-weight: 800; color: var(--text);">One-Time Lifetime Access</h3>
+                <span id="plan-badge-display" style="font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 9999px; background: rgba(59, 130, 246, 0.15); color: #60a5fa; font-weight: 700;">BEST VALUE</span>
+              </div>
+              <div class="pricing-price" id="plan-price-display">
+                $49 <span>one-time</span>
+              </div>
+            </div>
+
+            <p id="plan-desc-display" style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+              Full unlimited lifetime access to every AI blueprint, export, guide, and all future tool updates.
+            </p>
+
+            <ul class="pricing-features-list" id="plan-features-display">
+              <li>Unlimited custom AI project plan generations</li>
+              <li>Export & print high-resolution blueprints</li>
+              <li>Permanent access to all future tool catalog updates</li>
+              <li>Priority email and automation setup support</li>
+            </ul>
+
+            <button type="button" class="btn-primary" id="checkout-btn" style="width: 100%; justify-content: center; padding: 1.1rem; font-size: 1.05rem;">
+              Proceed to Purchase 💳
+            </button>
+            <p style="text-align: center; font-size: 0.78rem; color: var(--text-muted); margin-top: 0.75rem;">
+              🔒 Secure checkout • 100% money-back guarantee within 14 days
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="section-card">
+        <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">Frequently Asked Questions</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+          <div style="padding: 1.2rem; border-radius: 12px; background: var(--box-inner); border: 1px solid var(--card-border);">
+            <h4 style="font-size: 0.98rem; font-weight: 700; color: var(--text); margin-bottom: 0.35rem;">What is "Per Use Purchase"?</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">Ideal if you just have one specific project right now. You pay $4.99 and receive the complete blueprint, tool mappings, and export file.</p>
+          </div>
+          <div style="padding: 1.2rem; border-radius: 12px; background: var(--box-inner); border: 1px solid var(--card-border);">
+            <h4 style="font-size: 0.98rem; font-weight: 700; color: var(--text); margin-bottom: 0.35rem;">What is "One Time Life Purchase"?</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">Pay once and never again. You get lifetime access to generate as many plans as you want, plus all future new tools added to the guide.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Purchase Modal Simulation -->
+    <div id="checkout-modal" class="modal-overlay">
+      <div class="modal-window">
+        <button id="close-modal-btn" style="position: absolute; right: 1.25rem; top: 1.25rem; background: none; border: none; color: var(--text-muted); font-size: 1.3rem; cursor: pointer;">✕</button>
+        <div style="text-align: center; margin-bottom: 1.25rem;">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎉</div>
+          <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--text);">Complete Your Purchase</h3>
+          <p id="modal-plan-title" style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem;">One Time Life Purchase ($49)</p>
+        </div>
+
+        <form id="purchase-form" style="display: flex; flex-direction: column; gap: 1rem;">
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600; color: var(--text); display: block; margin-bottom: 0.35rem;">Email Address</label>
+            <input type="email" required placeholder="you@example.com" class="form-input" style="padding: 0.75rem 1rem;">
+          </div>
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600; color: var(--text); display: block; margin-bottom: 0.35rem;">Payment Method</label>
+            <select class="form-input" style="padding: 0.75rem 1rem; cursor: pointer;">
+              <option>Credit or Debit Card</option>
+              <option>PayPal</option>
+              <option>Apple Pay / Google Pay</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary" style="justify-content: center; width: 100%; padding: 0.9rem; margin-top: 0.5rem;">
+            Complete Order 🚀
+          </button>
+        </form>
+        <div id="purchase-success" style="display: none; text-align: center; padding: 1.5rem 0;">
+          <div style="font-size: 2rem; color: #34d399; margin-bottom: 0.5rem;">✅</div>
+          <h4 style="font-size: 1.2rem; font-weight: 800; color: var(--text);">Payment Successful!</h4>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.35rem;">
+            Your access pass has been granted. A receipt was sent to your email.
+          </p>
+          <button type="button" class="btn-secondary" id="return-btn" style="margin-top: 1.25rem; width: 100%; justify-content: center;">
+            Return to Planner
+          </button>
+        </div>
+      </div>
     </div>
 
     <footer>
@@ -1547,22 +1905,141 @@
     // DOM Elements
     const tabPlanner = document.getElementById("btn-tab-planner");
     const tabDirectory = document.getElementById("btn-tab-directory");
+    const tabPricing = document.getElementById("btn-tab-pricing");
+    const navPricingBtn = document.getElementById("nav-pricing-btn");
     const plannerView = document.getElementById("planner-view");
     const directoryView = document.getElementById("directory-view");
+    const pricingView = document.getElementById("pricing-view");
 
-    // Tab Switching
-    tabPlanner.addEventListener("click", () => {
-      tabPlanner.classList.add("active");
-      tabDirectory.classList.remove("active");
-      plannerView.style.display = "block";
-      directoryView.style.display = "none";
+    // Theme Switcher Logic
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+    const themeText = document.getElementById("theme-text");
+
+    function applyTheme(theme) {
+      if (theme === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+        themeIcon.textContent = "🌙";
+        themeText.textContent = "Dark Mode";
+      } else {
+        document.documentElement.removeAttribute("data-theme");
+        themeIcon.textContent = "☀️";
+        themeText.textContent = "Light Mode";
+      }
+      localStorage.setItem("adelogic_theme", theme);
+    }
+
+    const savedTheme = localStorage.getItem("adelogic_theme") || "dark";
+    applyTheme(savedTheme);
+
+    themeToggleBtn.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme");
+      applyTheme(current === "light" ? "dark" : "light");
     });
 
-    tabDirectory.addEventListener("click", () => {
-      tabDirectory.classList.add("active");
-      tabPlanner.classList.remove("active");
-      plannerView.style.display = "none";
-      directoryView.style.display = "block";
+    // Tab Switching
+    function switchTab(viewName) {
+      [tabPlanner, tabDirectory, tabPricing].forEach(b => b.classList.remove("active"));
+      [plannerView, directoryView, pricingView].forEach(v => v.style.display = "none");
+
+      if (viewName === "planner") {
+        tabPlanner.classList.add("active");
+        plannerView.style.display = "block";
+      } else if (viewName === "directory") {
+        tabDirectory.classList.add("active");
+        directoryView.style.display = "block";
+      } else if (viewName === "pricing") {
+        tabPricing.classList.add("active");
+        pricingView.style.display = "block";
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    tabPlanner.addEventListener("click", () => switchTab("planner"));
+    tabDirectory.addEventListener("click", () => switchTab("directory"));
+    tabPricing.addEventListener("click", () => switchTab("pricing"));
+    if (navPricingBtn) navPricingBtn.addEventListener("click", () => switchTab("pricing"));
+
+    // Pricing Dropdown Options
+    const pricingPlans = {
+      "per-use": {
+        name: "Per Use Purchase",
+        badge: "FLEXIBLE",
+        price: "$4.99",
+        unit: "/ blueprint",
+        desc: "Unlock and download a single custom project blueprint with step-by-step guidance.",
+        features: [
+          "1 complete custom AI project blueprint",
+          "Step-by-step build order & tool breakdown",
+          "Curated free documentation guide links",
+          "Exportable PDF / printable summary"
+        ]
+      },
+      "lifetime": {
+        name: "One Time Life Purchase",
+        badge: "BEST VALUE",
+        price: "$49",
+        unit: "one-time",
+        desc: "Full unlimited lifetime access to every AI blueprint, export, guide, and all future tool updates.",
+        features: [
+          "Unlimited custom AI project plan generations",
+          "Export & print high-resolution blueprints",
+          "Permanent access to all future tool catalog updates",
+          "Priority email and automation setup support"
+        ]
+      }
+    };
+
+    const planSelect = document.getElementById("pricing-plan-select");
+    const planNameDisplay = document.getElementById("plan-name-display");
+    const planBadgeDisplay = document.getElementById("plan-badge-display");
+    const planPriceDisplay = document.getElementById("plan-price-display");
+    const planDescDisplay = document.getElementById("plan-desc-display");
+    const planFeaturesDisplay = document.getElementById("plan-features-display");
+    const modalPlanTitle = document.getElementById("modal-plan-title");
+
+    function updatePricingCard(planKey) {
+      const plan = pricingPlans[planKey];
+      if (!plan) return;
+      planNameDisplay.textContent = plan.name;
+      planBadgeDisplay.textContent = plan.badge;
+      planPriceDisplay.innerHTML = `${plan.price} <span>${plan.unit}</span>`;
+      planDescDisplay.textContent = plan.desc;
+      planFeaturesDisplay.innerHTML = plan.features.map(f => `<li>${f}</li>`).join('');
+      modalPlanTitle.textContent = `${plan.name} (${plan.price})`;
+    }
+
+    planSelect.addEventListener("change", (e) => {
+      updatePricingCard(e.target.value);
+    });
+
+    // Checkout Modal
+    const checkoutModal = document.getElementById("checkout-modal");
+    const checkoutBtn = document.getElementById("checkout-btn");
+    const closeModalBtn = document.getElementById("close-modal-btn");
+    const purchaseForm = document.getElementById("purchase-form");
+    const purchaseSuccess = document.getElementById("purchase-success");
+    const returnBtn = document.getElementById("return-btn");
+
+    checkoutBtn.addEventListener("click", () => {
+      checkoutModal.style.display = "flex";
+      purchaseForm.style.display = "flex";
+      purchaseSuccess.style.display = "none";
+    });
+
+    closeModalBtn.addEventListener("click", () => {
+      checkoutModal.style.display = "none";
+    });
+
+    purchaseForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      purchaseForm.style.display = "none";
+      purchaseSuccess.style.display = "block";
+    });
+
+    returnBtn.addEventListener("click", () => {
+      checkoutModal.style.display = "none";
+      switchTab("planner");
     });
 
     // Populate Jobs Checklist
