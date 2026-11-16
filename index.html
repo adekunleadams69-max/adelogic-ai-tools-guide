@@ -1150,6 +1150,16 @@
         origin: "Day 2"
       },
       {
+        name: "OpenArt",
+        category: "makers",
+        familyClass: "tool-card-family-maker",
+        badge: "Creative Art Studio",
+        description: "AI image and art generator for digital creators. Features character consistency, style mixing, prompt templates, and image editing tools.",
+        cost: "Free daily credits",
+        costType: "cost-free",
+        origin: "AI Art & Graphics"
+      },
+      {
         name: "Google Flow + Veo",
         category: "makers",
         familyClass: "tool-card-family-maker",
@@ -1361,7 +1371,8 @@
       { id: 16, text: "Let people book open meeting slots online", tools: ["Cal.com"], lesson: "Voice Agent" },
       { id: 17, text: "Search live web sources with citations and research", tools: ["Perplexity AI"], lesson: "Web Research" },
       { id: 18, text: "Turn my PDFs and notes into a study guide or audio podcast", tools: ["NotebookLM"], lesson: "Document Brain" },
-      { id: 19, text: "Write and edit software code inside a project editor", tools: ["Cursor"], lesson: "AI Development" }
+      { id: 19, text: "Write and edit software code inside a project editor", tools: ["Cursor"], lesson: "AI Development" },
+      { id: 20, text: "Create custom artwork, character consistency, and styles", tools: ["OpenArt"], lesson: "AI Art & Graphics" }
     ];
 
     // External Free Beginner Resources catalog mapped by tool name
@@ -1410,6 +1421,11 @@
         title: "Gemini Image Generation Guide",
         url: "https://support.google.com/gemini/answer/14286560",
         tip: "How to prompt Gemini to generate clear illustrations and graphic assets."
+      },
+      "OpenArt": {
+        title: "OpenArt AI Beginner Academy & Tutorials",
+        url: "https://openart.ai/docs",
+        tip: "Learn how to use prompt books, maintain consistent characters, and style your digital artwork."
       },
       "Google Flow + Veo": {
         title: "Google DeepMind Veo Video Overview",
@@ -1503,6 +1519,7 @@
       { task: "Turn messy meeting notes into clear tasks with owners", tool: "ChatGPT / Claude + Asana", day: "Day 1" },
       { task: "Make presentation slide decks rapidly", tool: "Gamma + Skill file", day: "Day 1" },
       { task: "Generate custom pictures from descriptions", tool: "Gemini (Nano Banana)", day: "Day 2" },
+      { task: "Create consistent characters and stylized AI artwork", tool: "OpenArt", day: "AI Art & Graphics" },
       { task: "Create short video ads with motion & sound", tool: "Google Flow (Veo) + CapCut / Canva", day: "Day 2" },
       { task: "Sort website enquiries & filter out spam into sheets", tool: "n8n + OpenAI + Google Sheets", day: "Day 3" },
       { task: "Customer support triage bot (answers & alerts)", tool: "n8n AI Agent + Gmail + Google Sheets", day: "Day 4" },
