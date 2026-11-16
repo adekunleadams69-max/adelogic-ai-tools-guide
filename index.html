@@ -1110,6 +1110,26 @@
         origin: "Day 2"
       },
       {
+        name: "Perplexity AI",
+        category: "brains",
+        familyClass: "tool-card-family-chat",
+        badge: "Search & Research",
+        description: "An AI search engine that scours the live web, cross-references sources, and writes direct answers with clickable citations.",
+        cost: "Free tier available",
+        costType: "cost-free",
+        origin: "Web Research"
+      },
+      {
+        name: "NotebookLM",
+        category: "brains",
+        familyClass: "tool-card-family-chat",
+        badge: "Note & Audio Studio",
+        description: "Google's personalized research assistant. Upload your own PDFs or notes to generate summaries and conversational podcast overviews.",
+        cost: "Free with Google",
+        costType: "cost-free",
+        origin: "Document Brain"
+      },
+      {
         name: "OpenAI Models",
         category: "brains",
         familyClass: "tool-card-family-chat",
@@ -1220,6 +1240,16 @@
         origin: "Day 10"
       },
       {
+        name: "Cursor",
+        category: "web",
+        familyClass: "tool-card-family-web",
+        badge: "AI Code Editor",
+        description: "An AI-first code editor built on VS Code. Suggests smart code completions, edits files, and answers questions across your whole project.",
+        cost: "Free tier available",
+        costType: "cost-free",
+        origin: "AI Development"
+      },
+      {
         name: "GitHub",
         category: "web",
         familyClass: "tool-card-family-web",
@@ -1328,7 +1358,10 @@
       { id: 13, text: "Put a friendly web form in front of an automation", tools: ["Lovable", "n8n"], lesson: "Day 8" },
       { id: 14, text: "Build and publish a full website without coding", tools: ["Antigravity IDE", "GitHub", "Vercel"], lesson: "Day 10" },
       { id: 15, text: "Answer telephone calls and book clinic appointments", tools: ["Retell AI", "Cal.com", "Google Calendar"], lesson: "Voice Agent" },
-      { id: 16, text: "Let people book open meeting slots online", tools: ["Cal.com"], lesson: "Voice Agent" }
+      { id: 16, text: "Let people book open meeting slots online", tools: ["Cal.com"], lesson: "Voice Agent" },
+      { id: 17, text: "Search live web sources with citations and research", tools: ["Perplexity AI"], lesson: "Web Research" },
+      { id: 18, text: "Turn my PDFs and notes into a study guide or audio podcast", tools: ["NotebookLM"], lesson: "Document Brain" },
+      { id: 19, text: "Write and edit software code inside a project editor", tools: ["Cursor"], lesson: "AI Development" }
     ];
 
     // External Free Beginner Resources catalog mapped by tool name
@@ -1352,6 +1385,21 @@
         title: "Google Gemini Learning Center",
         url: "https://support.google.com/gemini",
         tip: "Google's direct guide to prompting, research, and multimodal creation."
+      },
+      "Perplexity AI": {
+        title: "Perplexity AI Getting Started & Search Guide",
+        url: "https://docs.perplexity.ai/",
+        tip: "Learn how to use Pro Search, upload reference documents, and cite live web sources."
+      },
+      "NotebookLM": {
+        title: "Google NotebookLM Official Guide & Audio Overviews",
+        url: "https://notebooklm.google/",
+        tip: "How to add notes and PDFs to generate podcasts and instant grounded summaries."
+      },
+      "Cursor": {
+        title: "Cursor Official Tutorials & Keyboard Shortcuts",
+        url: "https://docs.cursor.com/",
+        tip: "How to navigate files, trigger AI completions, and chat directly with your codebase."
       },
       "OpenAI Models": {
         title: "OpenAI Platform Documentation & Quickstart",
@@ -1462,6 +1510,9 @@
       { task: "Team of AI assistants for emails, calendars & notes", tool: "n8n Multi-Agent (\"Jerry\")", day: "Day 7" },
       { task: "Put a web form in front of an automation", tool: "Lovable + n8n Webhook", day: "Day 8" },
       { task: "Build and publish a complete website without coding", tool: "Antigravity + GitHub + Vercel", day: "Day 10" },
+      { task: "Search live web sources with citations and research", tool: "Perplexity AI", day: "Web Research" },
+      { task: "Create conversational audio podcasts from personal PDFs", tool: "NotebookLM", day: "Document Brain" },
+      { task: "Smart code completions and repository editing", tool: "Cursor", day: "AI Development" },
       { task: "Automate incoming clinic or office phone appointments", tool: "Retell AI + Cal.com + Google Calendar", day: "Voice Agent" }
     ];
 
