@@ -3,38 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adelogic ai Project Planner For Beginners</title>
-  <meta name="description" content="A friendly single-page guide that helps beginners pick the right AI tools and AI agents for their project in plain English.">
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#eef2ff',
-              100: '#e0e7ff',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-            }
-          }
-        }
-      }
-    }
-  </script>
+  <title>Adelogic AI Tools Guide & Project Planner</title>
+  <meta name="description" content="A beginner-friendly, plain English guide and interactive planner to modern AI tools, automations, and practical workflows.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* Plain, friendly, responsive styles for AI Project Planner */
     :root {
-      --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      --bg-canvas: #f8fafc;
-      --text-main: #0f172a;
-      --text-muted: #475569;
-      --border-light: #e2e8f0;
-      --border-focus: #3b82f6;
-      --card-bg: #ffffff;
+      --bg: #090d16;
+      --card-bg: rgba(22, 30, 49, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(30, 41, 69, 0.85);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.25);
+      --primary-hover: #2563eb;
+      --tag-bg: rgba(255, 255, 255, 0.06);
+      --accent-chat: #38bdf8;
+      --accent-maker: #fb923c;
+      --accent-auto: #2dd4bf;
+      --accent-web: #c084fc;
+      --accent-voice: #f472b6;
+      --radius: 16px;
+      --radius-lg: 24px;
+      --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * {
@@ -44,1743 +37,1472 @@
     }
 
     body {
-      font-family: var(--font-family);
-      background-color: var(--bg-canvas);
-      color: var(--text-main);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.16), transparent),
+        radial-gradient(circle at 100% 100%, rgba(192, 132, 252, 0.08), transparent);
+      background-attachment: fixed;
     }
 
-    /* Checkbox styling */
-    .custom-checkbox {
-      appearance: none;
-      -webkit-appearance: none;
-      width: 1.35rem;
-      height: 1.35rem;
-      border: 2px solid #cbd5e1;
-      border-radius: 0.375rem;
-      outline: none;
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding-top: 1.5rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #93c5fd;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-bottom: 1.25rem;
+    }
+
+    .badge::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #60a5fa;
+      box-shadow: 0 0 10px #60a5fa;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 1.5rem;
+      font-weight: 400;
+    }
+
+    /* Navigation Mode Tabs */
+    .view-switcher {
+      display: inline-flex;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--card-border);
+      border-radius: 9999px;
+      padding: 0.35rem;
+      gap: 0.35rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .view-btn {
+      padding: 0.65rem 1.4rem;
+      border-radius: 9999px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
       cursor: pointer;
-      display: inline-grid;
-      place-content: center;
-      transition: all 0.15s ease-in-out;
-      background-color: white;
-      flex-shrink: 0;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .custom-checkbox:hover {
-      border-color: #6366f1;
+    .view-btn:hover {
+      color: #fff;
     }
 
-    .custom-checkbox:checked {
-      background-color: #4f46e5;
-      border-color: #4f46e5;
+    .view-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 14px var(--primary-glow);
     }
 
-    .custom-checkbox:checked::before {
-      content: "";
-      width: 0.75rem;
-      height: 0.75rem;
-      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-      transform: scale(0.9);
-      background-color: white;
+    /* Section styling */
+    .section-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem 2.2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     }
 
-    /* Tool card colour families */
-    .card-family-chat {
-      border-left: 5px solid #3b82f6 !important;
-      background-color: #ffffff;
-    }
-    .card-family-chat .badge-family {
-      background-color: #eff6ff;
-      color: #1d4ed8;
-      border: 1px solid #bfdbfe;
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 1.5rem;
     }
 
-    .card-family-maker {
-      border-left: 5px solid #f97316 !important;
-      background-color: #ffffff;
-    }
-    .card-family-maker .badge-family {
-      background-color: #fff7ed;
-      color: #c2410c;
-      border: 1px solid #fed7aa;
-    }
-
-    .card-family-automation {
-      border-left: 5px solid #0d9488 !important;
-      background-color: #ffffff;
-    }
-    .card-family-automation .badge-family {
-      background-color: #f0fdfa;
-      color: #0f766e;
-      border: 1px solid #99f6e4;
-    }
-
-    .card-family-builder {
-      border-left: 5px solid #a855f7 !important;
-      background-color: #ffffff;
-    }
-    .card-family-builder .badge-family {
-      background-color: #faf5ff;
-      color: #7e22ce;
-      border: 1px solid #e9d5ff;
-    }
-
-    .card-family-voice {
-      border-left: 5px solid #ec4899 !important;
-      background-color: #ffffff;
-    }
-    .card-family-voice .badge-family {
-      background-color: #fdf2f8;
-      color: #be185d;
-      border: 1px solid #fbcfe8;
-    }
-
-    .card-family-everyday {
-      border-left: 5px solid #64748b !important;
-      background-color: #ffffff;
-    }
-    .card-family-everyday .badge-family {
-      background-color: #f8fafc;
-      color: #334155;
-      border: 1px solid #e2e8f0;
-    }
-
-    /* Radio button pills */
-    .radio-pill {
-      cursor: pointer;
+    .step-number {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0.65rem 1rem;
-      border: 2px solid #e2e8f0;
-      border-radius: 0.75rem;
-      font-weight: 500;
       font-size: 0.95rem;
-      color: #334155;
-      transition: all 0.15s ease-in-out;
+      box-shadow: 0 0 12px var(--primary-glow);
+      flex-shrink: 0;
+    }
+
+    .section-header h2, .section-header h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    /* Form Inputs */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 0.9rem 1.1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(10, 15, 29, 0.8);
+      color: #fff;
+      font-size: 0.98rem;
+      outline: none;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+
+    /* Jobs Checklist */
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .job-checkbox-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem 1.1rem;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--card-border);
+      cursor: pointer;
       user-select: none;
-      background: white;
+      transition: var(--transition);
+    }
+
+    .job-checkbox-card:hover {
+      background: rgba(30, 41, 69, 0.65);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .job-checkbox-card.selected {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.5);
+    }
+
+    .job-checkbox-card input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 6px;
+      background: rgba(10, 15, 29, 0.8);
+      cursor: pointer;
+      margin-top: 0.15rem;
+      display: grid;
+      place-content: center;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .job-checkbox-card input[type="checkbox"]:checked {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .job-checkbox-card input[type="checkbox"]:checked::before {
+      content: "✓";
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .job-text {
+      font-size: 0.92rem;
+      color: #e2e8f0;
+      font-weight: 500;
+      line-height: 1.45;
+    }
+
+    /* Decision Questions Pills */
+    .question-block {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .question-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 0.85rem;
+    }
+
+    .pill-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .radio-pill {
+      padding: 0.55rem 1.25rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(10, 15, 29, 0.7);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
     }
 
     .radio-pill:hover {
-      border-color: #cbd5e1;
-      background-color: #f8fafc;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
     }
 
     .radio-pill.selected {
-      border-color: #4f46e5;
-      background-color: #eef2ff;
-      color: #4338ca;
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      font-weight: 600;
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+
+    /* Action Buttons */
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .btn-primary {
+      padding: 0.95rem 2rem;
+      border-radius: 14px;
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 8px 20px var(--primary-glow);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-secondary {
+      padding: 0.85rem 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    /* Result View Cards */
+    .result-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .result-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .agent-type-banner {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.18), rgba(192, 132, 252, 0.18));
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .agent-icon {
+      font-size: 2.2rem;
+      line-height: 1;
+      padding: 0.75rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .order-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--card-border);
+      margin-bottom: 0.75rem;
+    }
+
+    .order-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(59, 130, 246, 0.25);
+      color: #93c5fd;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Directory Styles (from Initial Design) */
+    .controls {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.25rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .search-box {
+      position: relative;
+      margin-bottom: 1.25rem;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(10, 15, 29, 0.8);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1.1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      font-size: 1.1rem;
+    }
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .cat-btn {
+      padding: 0.6rem 1.15rem;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cat-btn:hover {
+      background: rgba(255, 255, 255, 0.09);
+      color: #fff;
+    }
+
+    .cat-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .tool-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-4px);
+      background: var(--card-hover);
+      border-color: rgba(255, 255, 255, 0.16);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .tool-card-family-chat { border-left: 4px solid var(--accent-chat); }
+    .tool-card-family-maker { border-left: 4px solid var(--accent-maker); }
+    .tool-card-family-automation { border-left: 4px solid var(--accent-auto); }
+    .tool-card-family-web { border-left: 4px solid var(--accent-web); }
+    .tool-card-family-voice { border-left: 4px solid var(--accent-voice); }
+    .tool-card-family-apps { border-left: 4px solid #64748b; }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+      gap: 0.5rem;
+    }
+
+    .tool-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .badge-day {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+    }
+
+    .tool-desc {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.82rem;
+    }
+
+    .meta-tag {
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      background: var(--tag-bg);
+      color: var(--text-muted);
+    }
+
+    .meta-cost {
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
       font-weight: 600;
     }
 
-    /* Print view optimization */
+    .cost-free {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+    }
+
+    .cost-info {
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+    }
+
+    .cost-paid {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+    }
+
+    /* Helper matrix */
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    .matrix-table th {
+      text-align: left;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.04);
+      color: #94a3b8;
+      font-weight: 600;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .matrix-table td {
+      padding: 1.1rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+    }
+
+    .matrix-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .tool-pill {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(59, 130, 246, 0.18);
+      color: #93c5fd;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .rule-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      padding: 1.25rem;
+      border-radius: 12px;
+    }
+
+    .rule-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 0.35rem;
+    }
+
+    .rule-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .alert-box {
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #fcd34d;
+    }
+
+    /* Print styling */
     @media print {
       body {
         background: white !important;
         color: black !important;
-        font-size: 11pt !important;
       }
-      .no-print {
+      .no-print, .view-switcher, .controls, header {
         display: none !important;
       }
-      .print-only {
-        display: block !important;
-      }
-      .print-page {
-        padding: 0 !important;
-        margin: 0 !important;
-        max-width: 100% !important;
+      .result-card, .section-card {
+        background: white !important;
+        color: black !important;
+        border: 1px solid #ccc !important;
         box-shadow: none !important;
-        border: none !important;
       }
-      .card-family-chat,
-      .card-family-maker,
-      .card-family-automation,
-      .card-family-builder,
-      .card-family-voice,
-      .card-family-everyday {
-        break-inside: avoid;
-        box-shadow: none !important;
-        border: 1px solid #e2e8f0 !important;
-      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 3.5rem 0 2rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: 3rem;
     }
   </style>
 </head>
-<body class="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
+<body>
 
-  <!-- Top Header -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 no-print">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-xl shadow-sm">
-          💡
-        </div>
-        <div>
-          <div class="flex items-center gap-2">
-            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold tracking-wider uppercase bg-indigo-50 text-indigo-700 border border-indigo-200/80">Adelogic</span>
-            <span class="text-xs text-slate-400 font-medium">For Beginners</span>
-          </div>
-          <h1 class="text-xl sm:text-2xl font-black tracking-tight text-slate-900">Adelogic ai Project Planner For Beginners</h1>
-        </div>
+  <div class="container">
+    <header>
+      <div class="badge">Plain-English AI Reference</div>
+      <h1>Adelogic AI Tools Guide</h1>
+      <p class="subtitle">
+        Explore tools, filter by function, or use the interactive planner to answer 3 questions and receive a custom step-by-step tool plan.
+      </p>
+
+      <!-- View Switcher -->
+      <div class="view-switcher no-print">
+        <button class="view-btn active" id="btn-tab-planner">🎯 Interactive Project Planner</button>
+        <button class="view-btn" id="btn-tab-directory">📚 Complete Tools Directory</button>
       </div>
-      <div class="flex items-center gap-2">
-        <button id="api-key-btn" title="Configure optional AI Key" class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition cursor-pointer">
-          🔑 AI Key
-        </button>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- Main Container -->
-  <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+    <!-- ========================================== -->
+    <!-- VIEW 1: INTERACTIVE PROJECT PLANNER (NEW) -->
+    <!-- ========================================== -->
+    <div id="planner-view">
 
-    <!-- ==================== FORM VIEW ==================== -->
-    <div id="form-view" class="space-y-10">
+      <!-- QUESTIONNAIRE FORM -->
+      <div id="planner-form" class="space-y-6">
 
-      <!-- Intro Hero Banner -->
-      <section class="bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-100 rounded-3xl p-6 sm:p-8">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
-          What are you making with AI?
-        </h2>
-        <p class="text-slate-600 text-base sm:text-lg max-w-2xl leading-relaxed">
-          Tell us about your project, tick the jobs you need done, and we will build you a friendly step-by-step tool plan in plain English.
-        </p>
-      </section>
-
-      <!-- Step 1: Project Name & Description -->
-      <section class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs">
-        <div class="flex items-center gap-3 mb-6">
-          <span class="w-8 h-8 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-sm shrink-0">1</span>
-          <div>
-            <h3 class="text-xl font-bold text-slate-900">Name and describe your project</h3>
-            <p class="text-slate-500 text-sm">Write in words that a 10-year-old could follow</p>
-          </div>
-        </div>
-
-        <div class="space-y-4">
-          <div>
-            <label for="project-name" class="block text-sm font-semibold text-slate-700 mb-1">
-              Project Name
-            </label>
-            <input 
-              type="text" 
-              id="project-name" 
-              placeholder="e.g. My School Club Newsletter, or Friendly Coffee Shop Receptionist"
-              class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-base transition"
-            >
+        <!-- Step 1: Project Details -->
+        <section class="section-card">
+          <div class="section-header">
+            <span class="step-number">1</span>
+            <div>
+              <h3>Name and describe your project</h3>
+              <p>Write in words anyone can understand</p>
+            </div>
           </div>
 
-          <div>
-            <label for="project-desc" class="block text-sm font-semibold text-slate-700 mb-1">
-              What does it do? (One or two sentences)
-            </label>
-            <textarea 
-              id="project-desc" 
-              rows="3" 
-              placeholder="e.g. When people fill in our website form, we want an AI to read their message, draft an email reply, and save their contact details into Google Sheets."
-              class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-base leading-relaxed transition"
-            ></textarea>
+          <div class="form-group">
+            <label for="project-name">Project Name</label>
+            <input type="text" id="project-name" class="form-input" placeholder="e.g. Friendly Customer Help Bot, or School Event Commercial">
           </div>
 
-          <!-- AI Suggestion Helper Button -->
-          <div class="pt-1 flex flex-wrap items-center gap-3">
-            <button 
-              type="button" 
-              id="ai-suggest-btn" 
-              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 font-semibold text-sm transition cursor-pointer"
-            >
-              <span>✨</span>
-              <span>Suggest jobs for me</span>
-            </button>
-            <span id="ai-status" class="hidden"></span>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label for="project-desc">What does it do? (One or two sentences)</label>
+            <textarea id="project-desc" rows="3" class="form-textarea" placeholder="e.g. When visitors submit our web form, we want AI to verify if it is real, email a confirmation, and log it to Google Sheets."></textarea>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Step 2: Jobs Needed -->
-      <section class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs">
-        <div class="flex items-center gap-3 mb-2">
-          <span class="w-8 h-8 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-sm shrink-0">2</span>
-          <div>
-            <h3 class="text-xl font-bold text-slate-900">Tick every job your project needs</h3>
-            <p class="text-slate-500 text-sm">Pick all the ones that apply. You can change them anytime.</p>
+        <!-- Step 2: Tick Every Job -->
+        <section class="section-card">
+          <div class="section-header">
+            <span class="step-number">2</span>
+            <div>
+              <h3>Tick every job your project needs done</h3>
+              <p>Pick all the ones that apply</p>
+            </div>
           </div>
-        </div>
 
-        <!-- Validation alert if none picked -->
-        <div id="validation-alert" class="hidden my-4 p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 flex items-center gap-3">
-          <span class="text-2xl">⚠️</span>
-          <div>
-            <p class="font-bold text-sm">Please tick at least one job!</p>
-            <p class="text-xs text-amber-800">Your AI project needs at least one job ticked so we can recommend the right tools.</p>
+          <div id="planner-alert" class="alert-box" style="display: none;">
+            <span>⚠️</span>
+            <div>Please tick at least one job so we can recommend the right tools for your plan!</div>
           </div>
-        </div>
 
-        <div id="jobs-container" class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-6">
-          <!-- Populated by JavaScript -->
-        </div>
-      </section>
-
-      <!-- Step 3: Three Short Questions -->
-      <section class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs">
-        <div class="flex items-center gap-3 mb-6">
-          <span class="w-8 h-8 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-sm shrink-0">3</span>
-          <div>
-            <h3 class="text-xl font-bold text-slate-900">Answer three short questions</h3>
-            <p class="text-slate-500 text-sm">This helps us tell you if you need a fixed workflow or an AI agent</p>
+          <div class="jobs-grid" id="jobs-container">
+            <!-- Rendered by JS -->
           </div>
-        </div>
+        </section>
 
-        <div class="space-y-6">
-          <!-- Question 1 -->
-          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-            <p class="font-bold text-slate-800 mb-3 text-base">
-              1. Can you draw the steps as a simple flow chart that never changes?
-            </p>
-            <div id="q-flowchart" class="grid grid-cols-3 gap-3">
+        <!-- Step 3: Three Short Questions -->
+        <section class="section-card">
+          <div class="section-header">
+            <span class="step-number">3</span>
+            <div>
+              <h3>Answer three short questions</h3>
+              <p>This determines whether you need a fixed workflow or an AI agent</p>
+            </div>
+          </div>
+
+          <div class="question-block">
+            <div class="question-title">1. Can you draw the steps as a simple flow chart that never changes?</div>
+            <div class="pill-options" id="q-flowchart">
               <button type="button" class="radio-pill" data-value="yes">Yes</button>
               <button type="button" class="radio-pill" data-value="no">No</button>
               <button type="button" class="radio-pill" data-value="not_sure">Not sure</button>
             </div>
           </div>
 
-          <!-- Question 2 -->
-          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-            <p class="font-bold text-slate-800 mb-3 text-base">
-              2. Does the job need judgment, or more than one app?
-            </p>
-            <div id="q-judgment" class="grid grid-cols-2 gap-3">
+          <div class="question-block">
+            <div class="question-title">2. Does the job need judgment, or more than one app?</div>
+            <div class="pill-options" id="q-judgment">
               <button type="button" class="radio-pill" data-value="yes">Yes</button>
               <button type="button" class="radio-pill" data-value="no">No</button>
             </div>
           </div>
 
-          <!-- Question 3 -->
-          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-            <p class="font-bold text-slate-800 mb-3 text-base">
-              3. Does it cover several areas at once, such as email plus calendar plus meetings?
-            </p>
-            <div id="q-several" class="grid grid-cols-2 gap-3">
+          <div class="question-block" style="margin-bottom: 0;">
+            <div class="question-title">3. Does it cover several areas at once (e.g. email + calendar + meeting transcripts)?</div>
+            <div class="pill-options" id="q-several">
               <button type="button" class="radio-pill" data-value="yes">Yes</button>
               <button type="button" class="radio-pill" data-value="no">No</button>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- Action Buttons -->
-      <section class="flex flex-col sm:flex-row items-center gap-4 justify-between pt-2">
-        <button 
-          type="button" 
-          id="start-over-btn" 
-          class="w-full sm:w-auto px-6 py-3.5 rounded-2xl border border-slate-300 text-slate-600 hover:bg-slate-100 font-bold text-base transition cursor-pointer"
-        >
-          Start over
-        </button>
-
-        <button 
-          type="button" 
-          id="show-plan-btn" 
-          class="w-full sm:w-auto px-10 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-lg shadow-lg hover:shadow-indigo-200 transition transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
-        >
-          Show my plan 🚀
-        </button>
-      </section>
-
-      <!-- Saved Projects Drawer / List -->
-      <section class="border-t border-slate-200 pt-8">
-        <div class="flex items-center justify-between mb-4">
-          <h4 class="text-lg font-bold text-slate-900">My projects</h4>
-          <span class="text-xs text-slate-500 font-medium">Saved in this browser</span>
-        </div>
-        <div id="saved-projects-list" class="space-y-3">
-          <!-- Populated by JS -->
-        </div>
-        <p id="empty-saved-msg" class="text-sm text-slate-400 italic">No saved projects yet. Build a plan and press "Save plan" to keep it here!</p>
-      </section>
-
-    </div>
-
-    <!-- ==================== RESULT VIEW ==================== -->
-    <div id="result-view" class="hidden space-y-8 print-page">
-
-      <!-- Result Header Actions (No print) -->
-      <div class="flex flex-wrap items-center justify-between gap-3 no-print pb-2">
-        <button 
-          type="button" 
-          id="edit-plan-btn" 
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-300 text-slate-700 font-bold text-sm hover:bg-slate-50 shadow-xs transition cursor-pointer"
-        >
-          ← Edit my answers
-        </button>
-        <div class="flex items-center gap-2">
-          <button 
-            type="button" 
-            id="save-plan-btn" 
-            class="px-4 py-2 rounded-xl bg-white border border-slate-300 text-slate-700 font-bold text-sm hover:bg-slate-50 shadow-xs transition cursor-pointer"
-          >
-            💾 Save plan
-          </button>
-          <button 
-            type="button" 
-            id="print-plan-btn" 
-            class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-xs transition cursor-pointer"
-          >
-            🖨️ Print
-          </button>
-          <button 
-            type="button" 
-            id="result-start-over-btn" 
-            class="px-3 py-2 rounded-xl text-slate-500 hover:text-slate-800 font-semibold text-sm transition cursor-pointer"
-          >
-            Start over
-          </button>
-        </div>
-      </div>
-
-      <!-- Result Section 1: Project Name & Description -->
-      <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs">
-        <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 uppercase tracking-wider">
-          Your AI Project Plan
-        </span>
-        <h2 id="result-project-name" class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight mt-3 mb-2"></h2>
-        <p id="result-project-desc" class="text-slate-600 text-base sm:text-lg leading-relaxed"></p>
-
-        <!-- Uncovered alert if user description had items not ticked -->
-        <div id="result-uncovered-alert" class="hidden mt-4 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-sm font-medium"></div>
-      </div>
-
-      <!-- Result Section 2: Your Tools -->
-      <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
-        <div class="border-b border-slate-100 pb-4">
-          <h3 class="text-xs font-black uppercase tracking-wider text-slate-500 mb-1">Your Tools</h3>
-          <p class="text-sm text-slate-600">The exact tools chosen for your ticked jobs, grouped by family.</p>
-        </div>
-        <div id="result-tools-container" class="space-y-6">
-          <!-- Populated by JavaScript -->
-        </div>
-      </div>
-
-      <!-- Result Section 3: Your Agent Type -->
-      <div class="bg-gradient-to-br from-indigo-50/70 via-white to-purple-50/70 border border-indigo-200 rounded-3xl p-6 sm:p-8 shadow-xs">
-        <h3 class="text-xs font-black uppercase tracking-wider text-indigo-700 mb-4">
-          Your Agent Type
-        </h3>
-        <div class="flex items-start gap-4">
-          <div id="result-agent-icon" class="shrink-0"></div>
-          <div>
-            <h4 id="result-agent-title" class="text-2xl font-black text-slate-900 tracking-tight"></h4>
-            <p id="result-agent-reason" class="text-slate-600 text-base mt-1.5 leading-relaxed"></p>
+          <div class="btn-row">
+            <button type="button" class="btn-secondary" id="reset-form-btn">Reset All</button>
+            <button type="button" class="btn-primary" id="generate-plan-btn">Generate My Plan 🚀</button>
           </div>
-        </div>
+        </section>
+
       </div>
 
-      <!-- Result Section 4: Build in this order -->
-      <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs">
-        <div class="border-b border-slate-100 pb-4 mb-4">
-          <h3 class="text-xs font-black uppercase tracking-wider text-slate-500 mb-1">Build in this order</h3>
-          <p class="text-sm text-slate-600">Always set up chat brains first, then makers, then n8n, then builders, and Retell AI last.</p>
-        </div>
-        <ol id="result-build-order" class="space-y-3">
-          <!-- Populated by JavaScript -->
-        </ol>
-      </div>
-
-      <!-- Result Section 5: Lessons to reopen & Alternate Free Guides -->
-      <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
-        <div class="border-b border-slate-100 pb-4">
-          <h3 class="text-xs font-black uppercase tracking-wider text-slate-500 mb-1">5. Lessons to reopen</h3>
-          <p class="text-sm text-slate-600">Open these course workbook days if you are following the curriculum.</p>
-          <div id="result-lessons-list" class="flex flex-wrap gap-2.5 mt-3">
-            <!-- Populated by JavaScript -->
-          </div>
+      <!-- PLANNER RESULT VIEW -->
+      <div id="planner-result" class="result-container" style="display: none;">
+        
+        <div class="btn-row no-print" style="margin-top: 0; margin-bottom: 1rem;">
+          <button type="button" class="btn-secondary" id="back-to-questions-btn">← Edit Answers</button>
+          <button type="button" class="btn-primary" id="print-result-btn" style="padding: 0.65rem 1.4rem; font-size: 0.95rem;">🖨️ Print Plan</button>
         </div>
 
-        <!-- Alternate Free Resources for Anyone Without the Course Workbook -->
-        <div>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-base">🌐</span>
-            <h4 class="text-xs font-black uppercase tracking-wider text-indigo-700">Don't have the course workbook? Free official guides to start today:</h4>
-          </div>
-          <p class="text-xs text-slate-500 mb-3">Anyone can build this plan without the workbook! Here are the official free step-by-step beginner guides and templates for the tools picked for you:</p>
-          <div id="result-external-resources" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <!-- Populated dynamically based on picked tools -->
-          </div>
-        </div>
-      </div>
+        <section class="result-card">
+          <div class="badge" style="margin-bottom: 0.75rem;">Your Custom Blueprint</div>
+          <h2 id="res-project-name" style="font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;"></h2>
+          <p id="res-project-desc" style="color: var(--text-muted); font-size: 1.05rem;"></p>
+        </section>
 
-      <!-- Result Section 6: Before you build -->
-      <div class="bg-amber-50/70 border border-amber-200 rounded-3xl p-6 sm:p-8 shadow-xs">
-        <div class="border-b border-amber-200/60 pb-3 mb-4">
-          <h3 class="text-xs font-black uppercase tracking-wider text-amber-900 mb-1">Before you build</h3>
-          <p class="text-sm text-amber-800">Important safety and setup rules for this specific plan.</p>
-        </div>
-        <ul id="result-rules-list" class="space-y-3">
-          <!-- Populated by JavaScript -->
-        </ul>
+        <!-- Recommended Agent Architecture -->
+        <section class="result-card">
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 1rem;">Recommended AI Setup</h3>
+          <div class="agent-type-banner">
+            <div class="agent-icon" id="res-agent-icon">⚙️</div>
+            <div>
+              <h4 id="res-agent-title" style="font-size: 1.35rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem;"></h4>
+              <p id="res-agent-desc" style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;"></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Recommended Tools -->
+        <section class="result-card">
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 1.25rem;">Tools Chosen For Your Plan</h3>
+          <div class="tools-grid" id="res-tools-grid" style="margin-bottom: 0;"></div>
+        </section>
+
+        <!-- Step-by-Step Build Order -->
+        <section class="result-card">
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 1rem;">Build In This Order</h3>
+          <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.25rem;">Always start with prompt testing, build connections second, and voice phone connections last.</p>
+          <div id="res-build-steps"></div>
+        </section>
+
       </div>
 
     </div>
 
-  </main>
+    <!-- ========================================== -->
+    <!-- VIEW 2: COMPLETE TOOLS DIRECTORY (INITIAL) -->
+    <!-- ========================================== -->
+    <div id="directory-view" style="display: none;">
 
-  <!-- Footer -->
-  <footer class="bg-white border-t border-slate-200 py-6 mt-12 text-center text-xs text-slate-500 no-print">
-    <div class="max-w-5xl mx-auto px-4">
-      <p class="font-medium text-slate-600">Adelogic ai Project Planner For Beginners — Simple decisions for real projects</p>
-      <p class="mt-1">Plain English • Works on phones and desktops • No login needed</p>
+      <!-- Controls -->
+      <div class="controls">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search any tool, task, or feature (e.g. video, email, sheets, free)...">
+        </div>
+        <div class="categories" id="categoryTabs">
+          <button class="cat-btn active" data-category="all">⚡ All Tools (<span id="count-all">0</span>)</button>
+          <button class="cat-btn" data-category="brains">🧠 AI Brains</button>
+          <button class="cat-btn" data-category="makers">🎨 Creative & Media</button>
+          <button class="cat-btn" data-category="automation">⚙️ Automation & Agents</button>
+          <button class="cat-btn" data-category="web">🌐 Web & Publishing</button>
+          <button class="cat-btn" data-category="voice">📞 Voice & Booking</button>
+          <button class="cat-btn" data-category="apps">🔌 Everyday Apps</button>
+        </div>
+      </div>
+
+      <!-- Tools Grid -->
+      <div class="tools-grid" id="toolsGrid"></div>
+
+      <!-- Decision Matrix Table -->
+      <section class="section-card">
+        <h2 style="font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">Which Tool For Which Job?</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Quick lookup guide based on the 18-page reference guide.</p>
+        
+        <div style="overflow-x: auto;">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th>If you want to...</th>
+                <th>Reach for this tool</th>
+                <th>Workbook Origin</th>
+              </tr>
+            </thead>
+            <tbody id="matrixBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Essential Rules Section -->
+      <section class="section-card" style="background: rgba(15, 23, 42, 0.4);">
+        <h2 style="font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">Essential Safety Rules</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Key principles to avoid mistakes, stay on free tiers, and keep data secure.</p>
+        
+        <div class="rules-grid">
+          <div class="rule-card">
+            <h3>🔑 1. API Keys are Passwords</h3>
+            <p>Treat keys like your bank PIN. Never share them in public links, code repositories, or chat screenshots.</p>
+          </div>
+          <div class="rule-card">
+            <h3>🔒 2. Read Permissions</h3>
+            <p>Plugs ask to read or write to Gmail, Asana, or Calendar. Always verify what access is granted before clicking Allow.</p>
+          </div>
+          <div class="rule-card">
+            <h3>🎯 3. Tell AI Not to Invent</h3>
+            <p>Always instruct AI models: "Never fabricate numbers or credentials. State clearly when information is missing."</p>
+          </div>
+          <div class="rule-card">
+            <h3>🧪 4. Test First, Publish Last</h3>
+            <p>Keep n8n automations inactive while building. Use safe test email accounts before turning live automation on.</p>
+          </div>
+          <div class="rule-card">
+            <h3>⏹️ 5. Turn Off Live Triggers</h3>
+            <p>Triggers checking inboxes or webhooks on a schedule consume credits. Switch them off when you finish testing.</p>
+          </div>
+          <div class="rule-card">
+            <h3>💳 6. Skip Payment Screens</h3>
+            <p>Start with free tiers and free credit allowances. Do not approve payment screens while learning.</p>
+          </div>
+        </div>
+      </section>
+
     </div>
-  </footer>
+
+    <footer>
+      <p>© 2026 <strong>Adelogic AI Tools Guide</strong>. Plain English • No Coding Required • Designed for Fast Learning</p>
+    </footer>
+
+  </div>
 
   <script>
-    // Embedded Data and Logic so it works offline and directly via double-click / file:// protocol
-    const TOOL_FAMILIES = {
-      chat: {
-        id: "chat",
-        name: "Chat brains",
-        color: "blue",
-        badgeBg: "bg-blue-100 text-blue-800 border-blue-200",
-        order: 1
-      },
-      maker: {
-        id: "maker",
-        name: "Makers",
-        color: "orange",
-        badgeBg: "bg-amber-100 text-amber-800 border-amber-200",
-        order: 2
-      },
-      automation: {
-        id: "automation",
-        name: "Automation",
-        color: "teal",
-        badgeBg: "bg-teal-100 text-teal-800 border-teal-200",
-        order: 3
-      },
-      builder: {
-        id: "builder",
-        name: "Builders",
-        color: "purple",
-        badgeBg: "bg-purple-100 text-purple-800 border-purple-200",
-        order: 4
-      },
-      voice: {
-        id: "voice",
-        name: "Voice and booking",
-        color: "pink",
-        badgeBg: "bg-pink-100 text-pink-800 border-pink-200",
-        order: 5
-      },
-      everyday: {
-        id: "everyday",
-        name: "Everyday apps",
-        color: "slate",
-        badgeBg: "bg-slate-100 text-slate-800 border-slate-200",
-        order: 6
-      }
-    };
-
-    const TOOL_CATALOG = {
-      // Chat brains
-      "ChatGPT": {
+    // Complete Tool Catalog
+    const tools = [
+      {
         name: "ChatGPT",
-        family: "chat",
-        whatItIs: "A friendly chat app that writes, brainstorms, and summarizes text.",
-        costNote: "free is fine"
+        category: "brains",
+        familyClass: "tool-card-family-chat",
+        badge: "Chat AI",
+        description: "OpenAI's chat app. Great for writing, brainstorming, and summarizing text. Connects to tools via plugins.",
+        cost: "Free plan available",
+        costType: "cost-free",
+        origin: "Day 1, Voice"
       },
-      "Claude": {
+      {
         name: "Claude",
-        family: "chat",
-        whatItIs: "A smart chat app with a built-in Skill Creator for consistent work.",
-        costNote: "free is fine"
+        category: "brains",
+        familyClass: "tool-card-family-chat",
+        badge: "Chat AI",
+        description: "Anthropic's thoughtful chat AI. Features a built-in Skill Creator and connectors to guide structured work.",
+        cost: "Free plan available",
+        costType: "cost-free",
+        origin: "Day 1, Voice"
       },
-      "Claude Desktop": {
+      {
         name: "Claude Desktop",
-        family: "chat",
-        whatItIs: "Claude installed right on your computer so it can reach your files.",
-        costNote: "free is fine"
+        category: "brains",
+        familyClass: "tool-card-family-chat",
+        badge: "Desktop App",
+        description: "Claude installed directly on your computer so it can reach local files and plugs via Model Context Protocol.",
+        cost: "Free to install",
+        costType: "cost-free",
+        origin: "Day 5"
       },
-      "Gemini": {
+      {
         name: "Gemini",
-        family: "chat",
-        whatItIs: "Google's smart chat app and the home of Nano Banana.",
-        costNote: "free access"
+        category: "brains",
+        familyClass: "tool-card-family-chat",
+        badge: "Google Chat AI",
+        description: "Google's smart assistant with prompt drafting, fast web research, and built-in image creation with Nano Banana.",
+        cost: "Free access",
+        costType: "cost-free",
+        origin: "Day 2"
       },
-      "OpenAI models": {
-        name: "OpenAI models",
-        family: "chat",
-        whatItIs: "A brain that other apps rent with an API key to think and sort.",
-        costNote: "Check the tool's website"
+      {
+        name: "OpenAI Models",
+        category: "brains",
+        familyClass: "tool-card-family-chat",
+        badge: "API Brain",
+        description: "Direct access to GPT-4.1 mini and GPT-5 mini brains inside workflows like n8n using an API key.",
+        cost: "Pay-as-you-go / Key",
+        costType: "cost-info",
+        origin: "Days 3, 4, 7, 8"
       },
-
-      // Makers
-      "Nano Banana": {
+      {
         name: "Nano Banana",
-        family: "maker",
-        whatItIs: "A fast picture maker working right inside Gemini.",
-        costNote: "free access"
+        category: "makers",
+        familyClass: "tool-card-family-maker",
+        badge: "Image Generator",
+        description: "Fast picture maker inside Gemini. Describe what you need in plain words and it draws it for you.",
+        cost: "Free via Gemini",
+        costType: "cost-free",
+        origin: "Day 2"
       },
-      "Google Flow with Veo": {
-        name: "Google Flow with Veo",
-        family: "maker",
-        whatItIs: "A video maker powered by Google Veo AI.",
-        costNote: "about 50 free credits"
+      {
+        name: "Google Flow + Veo",
+        category: "makers",
+        familyClass: "tool-card-family-maker",
+        badge: "Video Studio",
+        description: "Google's video studio. Turns still photos and descriptions into moving video clips with sound.",
+        cost: "Free credits (~50)",
+        costType: "cost-info",
+        origin: "Day 2"
       },
-      "Canva": {
-        name: "Canva",
-        family: "maker",
-        whatItIs: "A fun design app with a simple video editor.",
-        costNote: "Check the tool's website"
+      {
+        name: "Canva / CapCut",
+        category: "makers",
+        familyClass: "tool-card-family-maker",
+        badge: "Video & Design Editor",
+        description: "User-friendly video and design editors to arrange clips, add music, text overlays, and export ads.",
+        cost: "Free plans available",
+        costType: "cost-free",
+        origin: "Day 2"
       },
-      "CapCut": {
-        name: "CapCut",
-        family: "maker",
-        whatItIs: "A popular, easy video editor for cutting clips together.",
-        costNote: "Check the tool's website"
-      },
-      "Gamma": {
+      {
         name: "Gamma",
-        family: "maker",
-        whatItIs: "A slide maker that designs presentation decks from your notes.",
-        costNote: "free plan is enough"
+        category: "makers",
+        familyClass: "tool-card-family-maker",
+        badge: "Slide Deck Builder",
+        description: "Builds full presentation decks from a text brief or meeting notes in minutes.",
+        cost: "Free tier available",
+        costType: "cost-free",
+        origin: "Day 1"
       },
-      "ElevenLabs": {
+      {
         name: "ElevenLabs",
-        family: "maker",
-        whatItIs: "Creates natural-sounding spoken voice-overs and sound effects.",
-        costNote: "Check the tool's website"
+        category: "makers",
+        familyClass: "tool-card-family-maker",
+        badge: "Voice & Audio",
+        description: "Generates realistic, natural human voice-overs and sound effects from written text.",
+        cost: "Free credits",
+        costType: "cost-info",
+        origin: "Day 2"
       },
-      "Suno": {
+      {
         name: "Suno",
-        family: "maker",
-        whatItIs: "Makes original background music and songs in seconds.",
-        costNote: "Check the tool's website"
+        category: "makers",
+        familyClass: "tool-card-family-maker",
+        badge: "Music Generator",
+        description: "Generates background music, melodies, and songs in seconds from text prompts.",
+        cost: "Free tier available",
+        costType: "cost-free",
+        origin: "Day 2"
       },
-      "Midjourney": {
-        name: "Midjourney",
-        family: "maker",
-        whatItIs: "A high-detail picture maker.",
-        costNote: "paid"
-      },
-      "Kling": {
-        name: "Kling",
-        family: "maker",
-        whatItIs: "An AI tool that turns words into video clips.",
-        costNote: "paid"
-      },
-      "Runway": {
-        name: "Runway",
-        family: "maker",
-        whatItIs: "An advanced video generator and editor.",
-        costNote: "paid"
-      },
-      "HeyGen": {
-        name: "HeyGen",
-        family: "maker",
-        whatItIs: "Makes lifelike video avatars with talking lips matched to speech.",
-        costNote: "paid"
-      },
-      "Topaz Video AI": {
-        name: "Topaz Video AI",
-        family: "maker",
-        whatItIs: "Sharpens blurry videos and makes them crisp.",
-        costNote: "paid"
-      },
-
-      // Automation
-      "n8n": {
+      {
         name: "n8n",
-        family: "automation",
-        whatItIs: "An automation builder where you connect apps and build AI agents.",
-        costNote: "free sign-up"
+        category: "automation",
+        familyClass: "tool-card-family-automation",
+        badge: "Visual Automation",
+        description: "Canvas builder where you connect boxes together. Powers scheduled jobs, bots, and multi-agent teams.",
+        cost: "Free signup / Self-host",
+        costType: "cost-free",
+        origin: "Days 3, 4, 5, 7, 8"
       },
-
-      // Builders
-      "Lovable": {
+      {
+        name: "Jerry (Agent Team)",
+        category: "automation",
+        familyClass: "tool-card-family-automation",
+        badge: "Multi-Agent System",
+        description: "A manager agent in n8n that supervises three helper agents (Email, Calendar, and Meetings).",
+        cost: "Built inside n8n",
+        costType: "cost-free",
+        origin: "Day 7"
+      },
+      {
         name: "Lovable",
-        family: "builder",
-        whatItIs: "A website builder in your web browser that turns ideas into apps.",
-        costNote: "Check the tool's website"
+        category: "web",
+        familyClass: "tool-card-family-web",
+        badge: "Browser Web Builder",
+        description: "Build web pages and feedback forms by describing them in plain English. Publishes instantly.",
+        cost: "Free plan available",
+        costType: "cost-free",
+        origin: "Day 8"
       },
-      "Antigravity": {
-        name: "Antigravity",
-        family: "builder",
-        whatItIs: "An AI coding app you install on your computer.",
-        costNote: "limited free credits"
+      {
+        name: "Antigravity IDE",
+        category: "web",
+        familyClass: "tool-card-family-web",
+        badge: "AI Coding App",
+        description: "Google's vibe coding app for Mac and Windows. Writes code, tests it, and fixes errors automatically.",
+        cost: "Free credits included",
+        costType: "cost-free",
+        origin: "Day 10"
       },
-      "GitHub": {
+      {
         name: "GitHub",
-        family: "builder",
-        whatItIs: "A safe online locker where you store and track your code.",
-        costNote: "free account"
+        category: "web",
+        familyClass: "tool-card-family-web",
+        badge: "Code Storage",
+        description: "Secure cloud locker for your code. Keeps track of version history and connects directly to web hosts.",
+        cost: "Free account",
+        costType: "cost-free",
+        origin: "Days 1, 10"
       },
-      "Vercel": {
+      {
         name: "Vercel",
-        family: "builder",
-        whatItIs: "A website host that puts your website live on the web for anyone to see.",
-        costNote: "free Hobby plan"
+        category: "web",
+        familyClass: "tool-card-family-web",
+        badge: "Hosting & Publishing",
+        description: "Hosts modern websites directly from GitHub and provides free, shareable public web links.",
+        cost: "Free Hobby Plan",
+        costType: "cost-free",
+        origin: "Day 10"
       },
-
-      // Voice and booking
-      "Retell AI": {
+      {
         name: "Retell AI",
-        family: "voice",
-        whatItIs: "Friendly phone agents that talk on real phone calls.",
-        costNote: "free starting credits"
+        category: "voice",
+        familyClass: "tool-card-family-voice",
+        badge: "Voice Agent Builder",
+        description: "Creates conversational voice agents that answer telephone calls, speak naturally, and book slots.",
+        cost: "Free trial credits",
+        costType: "cost-info",
+        origin: "Voice Agent"
       },
-      "Cal.com": {
+      {
         name: "Cal.com",
-        family: "voice",
-        whatItIs: "A booking calendar so people can schedule meetings with you.",
-        costNote: "Check the tool's website"
+        category: "voice",
+        familyClass: "tool-card-family-voice",
+        badge: "Online Scheduling",
+        description: "Smart booking calendar. Checks open slots and allows human callers or voice agents to schedule time.",
+        cost: "Free for individuals",
+        costType: "cost-free",
+        origin: "Voice Agent"
       },
-
-      // Everyday apps
-      "Asana": {
-        name: "Asana",
-        family: "everyday",
-        whatItIs: "A tidy task board to track who does what by when.",
-        costNote: "free plan is enough"
-      },
-      "Gmail": {
-        name: "Gmail",
-        family: "everyday",
-        whatItIs: "Your familiar email inbox for sending and reading mail.",
-        costNote: "Check the tool's website"
-      },
-      "Google Sheets": {
+      {
         name: "Google Sheets",
-        family: "everyday",
-        whatItIs: "A simple spreadsheet table to hold and organize your rows of data.",
-        costNote: "Check the tool's website"
+        category: "apps",
+        familyClass: "tool-card-family-apps",
+        badge: "Data & Logs",
+        description: "The central logbook for AI automations: stores contact leads, support tickets, and summaries.",
+        cost: "Free with Google",
+        costType: "cost-free",
+        origin: "Days 3, 4, 8"
       },
-      "Google Calendar": {
+      {
+        name: "Gmail",
+        category: "apps",
+        familyClass: "tool-card-family-apps",
+        badge: "Email Gateway",
+        description: "Used by AI agents to read incoming messages, draft replies, and send urgent team alerts.",
+        cost: "Free with Google",
+        costType: "cost-free",
+        origin: "Days 4, 5, 7, 8"
+      },
+      {
         name: "Google Calendar",
-        family: "everyday",
-        whatItIs: "Your schedule calendar for booking times and checking meetings.",
-        costNote: "Check the tool's website"
-      },
-      "Fireflies": {
-        name: "Fireflies",
-        family: "everyday",
-        whatItIs: "Records your meetings and types out clean notes and action items.",
-        costNote: "Check the tool's website"
-      }
-    };
-
-    const JOBS_LIST = [
-      {
-        id: 1,
-        text: "Ask questions, write, or think something through",
-        tools: ["ChatGPT", "Claude", "Gemini"],
-        lesson: "Day 1"
+        category: "apps",
+        familyClass: "tool-card-family-apps",
+        badge: "Scheduling",
+        description: "Directly receives appointment bookings created by telephone voice agents and n8n helpers.",
+        cost: "Free with Google",
+        costType: "cost-free",
+        origin: "Day 7, Voice"
       },
       {
-        id: 2,
-        text: "Get the same quality every time I repeat a job",
-        tools: ["Claude"],
-        lesson: "Day 1"
+        name: "Asana",
+        category: "apps",
+        familyClass: "tool-card-family-apps",
+        badge: "Task Management",
+        description: "Organizes action items, owners, and due dates created automatically from meeting notes by AI.",
+        cost: "Free plan available",
+        costType: "cost-free",
+        origin: "Day 1"
       },
       {
-        id: 3,
-        text: "Turn meeting notes into tasks with owners and dates",
-        tools: ["ChatGPT", "Claude", "Asana"],
-        lesson: "Day 1"
-      },
-      {
-        id: 4,
-        text: "Make a slide deck",
-        tools: ["Gamma"],
-        lesson: "Day 1"
-      },
-      {
-        id: 5,
-        text: "Make a picture",
-        tools: ["Gemini", "Nano Banana"],
-        lesson: "Day 2"
-      },
-      {
-        id: 6,
-        text: "Make a short video or ad",
-        tools: ["Google Flow with Veo", "Canva", "CapCut"],
-        lesson: "Day 2"
-      },
-      {
-        id: 7,
-        text: "Add a voice-over or music",
-        tools: ["ElevenLabs", "Suno"],
-        lesson: "Day 2"
-      },
-      {
-        id: 8,
-        text: "Sort incoming form entries into buckets",
-        tools: ["n8n", "OpenAI models", "Google Sheets"],
-        lesson: "Day 3"
-      },
-      {
-        id: 9,
-        text: "Log, answer and escalate customer messages",
-        tools: ["n8n", "Gmail", "Google Sheets"],
-        lesson: "Day 4"
-      },
-      {
-        id: 10,
-        text: "Handle my own email by talking to an AI",
-        tools: ["Claude Desktop", "n8n", "Gmail"],
-        lesson: "Day 5"
-      },
-      {
-        id: 11,
-        text: "One assistant for email, calendar and meetings",
-        tools: ["n8n"],
-        lesson: "Day 7"
-      },
-      {
-        id: 12,
-        text: "Record meetings and get the action items",
-        tools: ["Fireflies"],
-        lesson: "Day 7"
-      },
-      {
-        id: 13,
-        text: "Put a web form in front of an automation",
-        tools: ["Lovable", "n8n"],
-        lesson: "Day 8"
-      },
-      {
-        id: 14,
-        text: "Build a full website without writing code",
-        tools: ["Antigravity", "GitHub", "Vercel"],
-        lesson: "Day 10"
-      },
-      {
-        id: 15,
-        text: "Have phone calls answered and appointments booked",
-        tools: ["Retell AI", "Cal.com", "Google Calendar"],
-        lesson: "Voice workbook"
-      },
-      {
-        id: 16,
-        text: "Let people book time with me online",
-        tools: ["Cal.com"],
-        lesson: "Voice workbook"
-      },
-      {
-        id: 17,
-        text: "Connect two apps that do not talk to each other",
-        tools: ["n8n"],
-        lesson: "Days 3 and 5"
+        name: "Fireflies.ai",
+        category: "apps",
+        familyClass: "tool-card-family-apps",
+        badge: "Meeting Notes",
+        description: "Records meetings and creates automated transcripts, summaries, and action checklists.",
+        cost: "Free tier available",
+        costType: "cost-info",
+        origin: "Day 7"
       }
     ];
 
-    // External Free Beginner Resources catalog mapped by tool name
-    const TOOL_RESOURCES = {
-      "ChatGPT": {
-        title: "OpenAI ChatGPT Beginner Quickstart",
-        url: "https://help.openai.com/en/collections/3742473-chatgpt",
-        tip: "Learn how to prompt, write custom instructions, and brainstorm effectively."
-      },
-      "Claude": {
-        title: "Anthropic Claude Prompt Engineering Guide",
-        url: "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
-        tip: "Official guide to structuring clear tasks and skills that produce consistent quality."
-      },
-      "Claude Desktop": {
-        title: "Claude Desktop & Model Context Protocol (MCP)",
-        url: "https://modelcontextprotocol.io/quickstart",
-        tip: "Free tutorial on connecting Claude on your desktop to local files and Gmail tools."
-      },
-      "Gemini": {
-        title: "Google Gemini Learning Center",
-        url: "https://support.google.com/gemini",
-        tip: "Google's direct guide to prompting, research, and multimodal creation."
-      },
-      "OpenAI models": {
-        title: "OpenAI Platform Documentation & API Playground",
-        url: "https://platform.openai.com/docs/quickstart",
-        tip: "How to get an API key and plug OpenAI brains into automation tools."
-      },
-      "Nano Banana": {
-        title: "Gemini Image Generation Guide",
-        url: "https://support.google.com/gemini/answer/14286560",
-        tip: "How to prompt Gemini to generate clear illustrations and graphic assets."
-      },
-      "Google Flow with Veo": {
-        title: "Google DeepMind Veo Video Overview",
-        url: "https://deepmind.google/technologies/veo/",
-        tip: "Explore video generation prompting and storyboarding."
-      },
-      "Canva": {
-        title: "Canva Design School for Beginners",
-        url: "https://www.canva.com/designschool/tutorials/",
-        tip: "Free video courses on layouts, templates, and video editing."
-      },
-      "CapCut": {
-        title: "CapCut Official Video Editing Tutorials",
-        url: "https://www.capcut.com/resource",
-        tip: "Short 2-minute guides on splicing clips, captions, and sound effects."
-      },
-      "Gamma": {
-        title: "Gamma Help Center & Presentation Starter Guides",
-        url: "https://support.gamma.app/",
-        tip: "How to paste outlines or notes and let AI produce professional slide decks."
-      },
-      "ElevenLabs": {
-        title: "ElevenLabs Voice Generation Quickstart",
-        url: "https://elevenlabs.io/docs/quickstart",
-        tip: "Step-by-step on generating lifelike narration and sound effects."
-      },
-      "Suno": {
-        title: "Suno AI Music Guide & Community Wiki",
-        url: "https://www.suno.wiki/",
-        tip: "Tips on music genre tags, lyrics structuring, and track creation."
-      },
-      "n8n": {
-        title: "n8n Official Beginner Academy (Free Courses)",
-        url: "https://academy.n8n.io/",
-        tip: "Hands-on beginner courses on building workflows, connecting apps, and making AI agents."
-      },
-      "Lovable": {
-        title: "Lovable Documentation & Community Templates",
-        url: "https://docs.lovable.dev/",
-        tip: "Learn how to prompt a full web app and connect forms to webhooks."
-      },
-      "Antigravity": {
-        title: "Google Antigravity Getting Started Guide",
-        url: "https://github.com",
-        tip: "How to use agentic AI tools to build and edit code on your computer."
-      },
-      "GitHub": {
-        title: "GitHub Git Handbook & Hello World",
-        url: "https://docs.github.com/en/get-started/start-your-journey/hello-world",
-        tip: "A simple 10-minute guide to storing code and syncing projects online."
-      },
-      "Vercel": {
-        title: "Vercel Deployments Beginner Quickstart",
-        url: "https://vercel.com/docs/getting-started-with-vercel",
-        tip: "Free tutorial on publishing websites with one click from GitHub."
-      },
-      "Retell AI": {
-        title: "Retell AI Phone Agent Quickstart Documentation",
-        url: "https://docs.retellai.com/",
-        tip: "How to connect a phone number and build your first spoken AI receptionist."
-      },
-      "Cal.com": {
-        title: "Cal.com Scheduling Setup Guide",
-        url: "https://cal.com/docs",
-        tip: "How to connect Google Calendar and create shareable booking links."
-      },
-      "Asana": {
-        title: "Asana Academy: Getting Started with Projects & Tasks",
-        url: "https://academy.asana.com/",
-        tip: "Free lessons on setting up task boards, owners, and due dates."
-      },
-      "Fireflies": {
-        title: "Fireflies.ai Getting Started with Meeting Transcripts",
-        url: "https://guide.fireflies.ai/",
-        tip: "How to invite the bot to Zoom/Meet and automatically receive action item summaries."
-      }
-    };
+    // Checklist Jobs for Interactive Planner
+    const plannerJobs = [
+      { id: 1, text: "Ask questions, write, or brainstorm ideas", tools: ["ChatGPT", "Claude", "Gemini"] },
+      { id: 2, text: "Get identical high quality every time I repeat a task", tools: ["Claude"] },
+      { id: 3, text: "Turn meeting notes into tasks with owners and dates", tools: ["ChatGPT", "Claude", "Asana"] },
+      { id: 4, text: "Make a presentation slide deck quickly", tools: ["Gamma"] },
+      { id: 5, text: "Generate custom photos or illustrations", tools: ["Gemini", "Nano Banana"] },
+      { id: 6, text: "Produce a short video ad with motion and sound", tools: ["Google Flow + Veo", "Canva / CapCut"] },
+      { id: 7, text: "Add voice-over narration or background music", tools: ["ElevenLabs", "Suno"] },
+      { id: 8, text: "Sort incoming web form submissions and filter spam", tools: ["n8n", "OpenAI Models", "Google Sheets"] },
+      { id: 9, text: "Log, reply to, and triage customer messages", tools: ["n8n", "Gmail", "Google Sheets"] },
+      { id: 10, text: "Handle my own email by talking to an AI on desktop", tools: ["Claude Desktop", "n8n", "Gmail"] },
+      { id: 11, text: "An assistant team for email, calendar, and notes", tools: ["n8n", "Jerry (Agent Team)"] },
+      { id: 12, text: "Record meetings and extract action items", tools: ["Fireflies.ai"] },
+      { id: 13, text: "Put a friendly web form in front of an automation", tools: ["Lovable", "n8n"] },
+      { id: 14, text: "Build and publish a full website without coding", tools: ["Antigravity IDE", "GitHub", "Vercel"] },
+      { id: 15, text: "Answer telephone calls and book clinic appointments", tools: ["Retell AI", "Cal.com", "Google Calendar"] },
+      { id: 16, text: "Let people book open meeting slots online", tools: ["Cal.com"] }
+    ];
 
-    const STORAGE_KEY = 'ai_project_planner_saved_plans';
+    const matrixJobs = [
+      { task: "Ask questions, brainstorm, or write drafts", tool: "ChatGPT, Claude, or Gemini", day: "Day 1" },
+      { task: "Turn messy meeting notes into clear tasks with owners", tool: "ChatGPT / Claude + Asana", day: "Day 1" },
+      { task: "Make presentation slide decks rapidly", tool: "Gamma + Skill file", day: "Day 1" },
+      { task: "Generate custom pictures from descriptions", tool: "Gemini (Nano Banana)", day: "Day 2" },
+      { task: "Create short video ads with motion & sound", tool: "Google Flow (Veo) + CapCut / Canva", day: "Day 2" },
+      { task: "Sort website enquiries & filter out spam into sheets", tool: "n8n + OpenAI + Google Sheets", day: "Day 3" },
+      { task: "Customer support triage bot (answers & alerts)", tool: "n8n AI Agent + Gmail + Google Sheets", day: "Day 4" },
+      { task: "Manage your personal inbox directly by talking to AI", tool: "Claude Desktop + n8n Gmail MCP", day: "Day 5" },
+      { task: "Team of AI assistants for emails, calendars & notes", tool: "n8n Multi-Agent (\"Jerry\")", day: "Day 7" },
+      { task: "Put a web form in front of an automation", tool: "Lovable + n8n Webhook", day: "Day 8" },
+      { task: "Build and publish a complete website without coding", tool: "Antigravity + GitHub + Vercel", day: "Day 10" },
+      { task: "Automate incoming clinic or office phone appointments", tool: "Retell AI + Cal.com + Google Calendar", day: "Voice Agent" }
+    ];
 
-    let state = {
-      projectName: '',
-      projectDesc: '',
+    // State
+    const plannerState = {
       selectedJobs: new Set(),
-      qFlowChart: '',
-      qJudgment: '',
-      qSeveralAreas: '',
-      apiKey: localStorage.getItem('gemini_api_key') || '',
-      currentPlan: null
+      qFlowchart: null,
+      qJudgment: null,
+      qSeveral: null
     };
 
-    const formView = document.getElementById('form-view');
-    const resultView = document.getElementById('result-view');
-    const projectNameInput = document.getElementById('project-name');
-    const projectDescInput = document.getElementById('project-desc');
-    const jobsContainer = document.getElementById('jobs-container');
-    const validationAlert = document.getElementById('validation-alert');
-    const savedProjectsList = document.getElementById('saved-projects-list');
-    const emptySavedMsg = document.getElementById('empty-saved-msg');
-    const aiSuggestBtn = document.getElementById('ai-suggest-btn');
-    const aiStatus = document.getElementById('ai-status');
+    // DOM Elements
+    const tabPlanner = document.getElementById("btn-tab-planner");
+    const tabDirectory = document.getElementById("btn-tab-directory");
+    const plannerView = document.getElementById("planner-view");
+    const directoryView = document.getElementById("directory-view");
 
-    function init() {
-      renderJobsList();
-      renderSavedProjects();
-      setupEventListeners();
-    }
+    // Tab Switching
+    tabPlanner.addEventListener("click", () => {
+      tabPlanner.classList.add("active");
+      tabDirectory.classList.remove("active");
+      plannerView.style.display = "block";
+      directoryView.style.display = "none";
+    });
 
-    function renderJobsList() {
-      jobsContainer.innerHTML = '';
-      JOBS_LIST.forEach(job => {
-        const jobItem = document.createElement('label');
-        jobItem.className = 'flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 transition cursor-pointer select-none';
-        jobItem.innerHTML = `
-          <input type="checkbox" value="${job.id}" class="custom-checkbox mt-0.5 job-checkbox" ${state.selectedJobs.has(job.id) ? 'checked' : ''}>
-          <div class="flex-1">
-            <span class="text-slate-800 font-medium text-base">${job.id}. ${job.text}</span>
-          </div>
-        `;
+    tabDirectory.addEventListener("click", () => {
+      tabDirectory.classList.add("active");
+      tabPlanner.classList.remove("active");
+      plannerView.style.display = "none";
+      directoryView.style.display = "block";
+    });
 
-        const checkbox = jobItem.querySelector('input');
-        checkbox.addEventListener('change', (e) => {
-          if (e.target.checked) {
-            state.selectedJobs.add(job.id);
-            jobItem.classList.add('border-indigo-400', 'bg-indigo-50/40');
-          } else {
-            state.selectedJobs.delete(job.id);
-            jobItem.classList.remove('border-indigo-400', 'bg-indigo-50/40');
-          }
-          if (state.selectedJobs.size > 0) {
-            validationAlert.classList.add('hidden');
-          }
-        });
+    // Populate Jobs Checklist
+    const jobsContainer = document.getElementById("jobs-container");
+    jobsContainer.innerHTML = plannerJobs.map(j => `
+      <div class="job-checkbox-card" data-job-id="${j.id}">
+        <input type="checkbox" id="job-${j.id}">
+        <label for="job-${j.id}" class="job-text">${j.text}</label>
+      </div>
+    `).join('');
 
-        jobsContainer.appendChild(jobItem);
-      });
-    }
-
-    function setupEventListeners() {
-      setupRadioGroup('q-flowchart', val => state.qFlowChart = val);
-      setupRadioGroup('q-judgment', val => state.qJudgment = val);
-      setupRadioGroup('q-several', val => state.qSeveralAreas = val);
-
-      document.getElementById('show-plan-btn').addEventListener('click', handleShowPlan);
-
-      document.getElementById('edit-plan-btn').addEventListener('click', () => {
-        resultView.classList.add('hidden');
-        formView.classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-
-      document.getElementById('start-over-btn').addEventListener('click', resetForm);
-      document.getElementById('result-start-over-btn').addEventListener('click', resetForm);
-      document.getElementById('save-plan-btn').addEventListener('click', saveCurrentPlan);
-
-      document.getElementById('print-plan-btn').addEventListener('click', () => {
-        window.print();
-      });
-
-      aiSuggestBtn.addEventListener('click', handleAiSuggestion);
-
-      const apiKeyBtn = document.getElementById('api-key-btn');
-      if (apiKeyBtn) {
-        apiKeyBtn.addEventListener('click', handleApiKeyModal);
-      }
-    }
-
-    function setupRadioGroup(groupName, onSelect) {
-      const container = document.getElementById(groupName);
-      if (!container) return;
-      const buttons = container.querySelectorAll('.radio-pill');
-      buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          buttons.forEach(b => b.classList.remove('selected'));
-          btn.classList.add('selected');
-          const val = btn.getAttribute('data-value');
-          onSelect(val);
-        });
-      });
-    }
-
-    function resetRadioGroup(groupName) {
-      const container = document.getElementById(groupName);
-      if (!container) return;
-      container.querySelectorAll('.radio-pill').forEach(b => b.classList.remove('selected'));
-    }
-
-    function setRadioGroupValue(groupName, value) {
-      const container = document.getElementById(groupName);
-      if (!container) return;
-      container.querySelectorAll('.radio-pill').forEach(b => {
-        if (b.getAttribute('data-value') === value) {
-          b.classList.add('selected');
+    jobsContainer.querySelectorAll(".job-checkbox-card").forEach(card => {
+      card.addEventListener("click", (e) => {
+        if (e.target.tagName !== "INPUT") {
+          const cb = card.querySelector("input");
+          cb.checked = !cb.checked;
+        }
+        const id = parseInt(card.getAttribute("data-job-id"));
+        const cb = card.querySelector("input");
+        if (cb.checked) {
+          plannerState.selectedJobs.add(id);
+          card.classList.add("selected");
         } else {
-          b.classList.remove('selected');
+          plannerState.selectedJobs.delete(id);
+          card.classList.remove("selected");
+        }
+        if (plannerState.selectedJobs.size > 0) {
+          document.getElementById("planner-alert").style.display = "none";
         }
       });
-    }
+    });
 
-    function resetForm() {
-      state.projectName = '';
-      state.projectDesc = '';
-      state.selectedJobs.clear();
-      state.qFlowChart = '';
-      state.qJudgment = '';
-      state.qSeveralAreas = '';
-      state.currentPlan = null;
-
-      projectNameInput.value = '';
-      projectDescInput.value = '';
-      validationAlert.classList.add('hidden');
-
-      resetRadioGroup('q-flowchart');
-      resetRadioGroup('q-judgment');
-      resetRadioGroup('q-several');
-
-      renderJobsList();
-
-      resultView.classList.add('hidden');
-      formView.classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function calculatePlan() {
-      state.projectName = projectNameInput.value.trim() || 'My AI Project';
-      state.projectDesc = projectDescInput.value.trim();
-
-      if (state.selectedJobs.size === 0) {
-        validationAlert.classList.remove('hidden');
-        validationAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return null;
-      }
-
-      validationAlert.classList.add('hidden');
-
-      const tickedJobs = JOBS_LIST.filter(j => state.selectedJobs.has(j.id));
-      const toolUsageMap = new Map();
-      const lessonsSet = new Set();
-      let hasN8n = false;
-      let hasRetell = false;
-      let hasLovable = false;
-
-      tickedJobs.forEach(job => {
-        lessonsSet.add(job.lesson);
-        job.tools.forEach(toolName => {
-          const toolDef = TOOL_CATALOG[toolName];
-          if (!toolDef) return;
-
-          if (!toolUsageMap.has(toolName)) {
-            toolUsageMap.set(toolName, {
-              def: toolDef,
-              reasons: []
-            });
-          }
-          toolUsageMap.get(toolName).reasons.push(job.text);
-
-          if (toolName === 'n8n') hasN8n = true;
-          if (toolName === 'Retell AI') hasRetell = true;
-          if (toolName === 'Lovable') hasLovable = true;
+    // Setup Question Pills
+    function setupPills(containerId, stateKey) {
+      const container = document.getElementById(containerId);
+      container.querySelectorAll(".radio-pill").forEach(btn => {
+        btn.addEventListener("click", () => {
+          container.querySelectorAll(".radio-pill").forEach(b => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          plannerState[stateKey] = btn.getAttribute("data-value");
         });
       });
-
-      const groupedTools = {
-        chat: [],
-        maker: [],
-        automation: [],
-        builder: [],
-        voice: [],
-        everyday: []
-      };
-
-      toolUsageMap.forEach(item => {
-        const family = item.def.family || 'everyday';
-        if (groupedTools[family]) {
-          groupedTools[family].push(item);
-        }
-      });
-
-      let agentRecommendation = {
-        title: '',
-        reason: '',
-        isAgent: false
-      };
-
-      const usesAgentPlatform = hasN8n || hasRetell;
-
-      if (!usesAgentPlatform) {
-        agentRecommendation.title = 'No agent needed';
-        agentRecommendation.reason = 'A chat tool or a maker tool does this job.';
-        agentRecommendation.isAgent = false;
-      } else {
-        const job15Ticked = state.selectedJobs.has(15);
-
-        if (job15Ticked) {
-          agentRecommendation.title = 'Voice agent (Retell AI)';
-          agentRecommendation.reason = 'Retell AI answers phone calls in spoken voice, checks calendar openings, and books appointments directly.';
-          agentRecommendation.isAgent = true;
-        } else {
-          const flow = state.qFlowChart;
-          const judgment = state.qJudgment;
-          const several = state.qSeveralAreas;
-
-          if (several === 'yes') {
-            agentRecommendation.title = 'A boss agent with helper agents';
-            agentRecommendation.reason = 'One boss passes each request to a helper for that area.';
-            agentRecommendation.isAgent = true;
-          } else if (flow === 'yes' && judgment === 'no') {
-            agentRecommendation.title = 'Fixed workflow';
-            agentRecommendation.reason = 'You choose the path with IF and Switch boxes. It does the same thing every time and is easy to fix.';
-            agentRecommendation.isAgent = true;
-          } else if (judgment === 'yes' && several !== 'yes') {
-            agentRecommendation.title = 'One AI agent';
-            agentRecommendation.reason = 'The AI chooses which tool to use. Flexible, but needs more testing.';
-            agentRecommendation.isAgent = true;
-          } else if (flow === 'not_sure') {
-            agentRecommendation.title = 'Fixed workflow (Start here)';
-            agentRecommendation.reason = 'Recommend starting with a fixed workflow and moving to an agent if you keep writing "it depends".';
-            agentRecommendation.isAgent = true;
-          } else {
-            agentRecommendation.title = 'Fixed workflow';
-            agentRecommendation.reason = 'You choose the path with IF and Switch boxes. It does the same thing every time and is easy to fix.';
-            agentRecommendation.isAgent = true;
-          }
-        }
-      }
-
-      const toolsArray = Array.from(toolUsageMap.values());
-      const orderedTools = [...toolsArray].sort((a, b) => {
-        const getScore = (toolItem) => {
-          const name = toolItem.def.name;
-          const fam = toolItem.def.family;
-          if (fam === 'chat') return 10;
-          if (fam === 'maker') return 20;
-          if (name === 'n8n') return 30;
-          if (fam === 'builder') return 40;
-          if (name === 'Retell AI') return 60;
-          if (fam === 'voice') return 50;
-          return 70;
-        };
-        return getScore(a) - getScore(b);
-      });
-
-      const lessonsList = Array.from(lessonsSet);
-
-      const safetyRules = [];
-      if (hasN8n) {
-        safetyRules.push('Keep API keys in the secure credential box, never in a prompt or public file.');
-        safetyRules.push('Test with your own email address first.');
-        safetyRules.push('Use the Production address, not the Test address, when going live.');
-      }
-      if (hasLovable) {
-        safetyRules.push('Store the webhook address as a secret, never in the code.');
-      }
-      if (hasRetell) {
-        safetyRules.push('Test with your own phone before real customers call.');
-      }
-      safetyRules.push('Always read what the AI wrote before it is sent to anyone.');
-
-      const unhandledCheck = checkUncoveredNeeds(state.projectDesc, tickedJobs);
-
-      return {
-        projectName: state.projectName,
-        projectDesc: state.projectDesc,
-        tickedJobIds: Array.from(state.selectedJobs),
-        qFlowChart: state.qFlowChart,
-        qJudgment: state.qJudgment,
-        qSeveralAreas: state.qSeveralAreas,
-        groupedTools,
-        orderedTools,
-        agentRecommendation,
-        lessonsList,
-        safetyRules,
-        unhandledCheck,
-        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-      };
     }
 
-    function checkUncoveredNeeds(desc, tickedJobs) {
-      if (!desc || desc.trim().length === 0) return null;
-      const lower = desc.toLowerCase();
-      
-      const signals = [
-        { word: 'video', jobId: 6, label: 'video creation' },
-        { word: 'music', jobId: 7, label: 'music or audio' },
-        { word: 'voice', jobId: 7, label: 'voice-over' },
-        { word: 'call', jobId: 15, label: 'phone calls' },
-        { word: 'phone', jobId: 15, label: 'phone calling' },
-        { word: 'meeting', jobId: 12, label: 'meeting recording' },
-        { word: 'slide', jobId: 4, label: 'slide decks' },
-        { word: 'website', jobId: 14, label: 'website building' },
-        { word: 'book', jobId: 16, label: 'calendar booking' },
-        { word: 'calendar', jobId: 16, label: 'calendar booking' },
-        { word: 'email', jobId: 10, label: 'email handling' },
-        { word: 'support', jobId: 9, label: 'customer messages' }
-      ];
+    setupPills("q-flowchart", "qFlowchart");
+    setupPills("q-judgment", "qJudgment");
+    setupPills("q-several", "qSeveral");
 
-      const missingSignals = [];
-      const selectedJobIdSet = new Set(tickedJobs.map(j => j.id));
+    // Generate Plan Handler
+    document.getElementById("generate-plan-btn").addEventListener("click", () => {
+      if (plannerState.selectedJobs.size === 0) {
+        const alertEl = document.getElementById("planner-alert");
+        alertEl.style.display = "flex";
+        alertEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
 
-      signals.forEach(sig => {
-        if (lower.includes(sig.word) && !selectedJobIdSet.has(sig.jobId)) {
-          if (!missingSignals.includes(sig.label)) {
-            missingSignals.push(sig.label);
-          }
-        }
+      const pName = document.getElementById("project-name").value.trim() || "My AI Project";
+      const pDesc = document.getElementById("project-desc").value.trim() || "Automated AI system built from plain-English requirements.";
+
+      document.getElementById("res-project-name").textContent = pName;
+      document.getElementById("res-project-desc").textContent = pDesc;
+
+      // Determine Agent Type
+      let icon = "⚡";
+      let title = "Fixed Automation Workflow";
+      let desc = "Your steps follow clear, fixed rules. A standard workflow (like n8n with IF and Switch nodes) is the cleanest, most reliable choice.";
+
+      if (plannerState.qSeveral === "yes") {
+        icon = "👥";
+        title = "Multi-Agent System (Boss + Helpers)";
+        desc = "Your project handles several distinct domains at once (like email, calendar, and notes). A supervisor agent passing tasks to specialized helper agents is recommended.";
+      } else if (plannerState.qJudgment === "yes" || plannerState.qFlowchart === "no") {
+        icon = "🧠";
+        title = "Single AI Agent";
+        desc = "Your project involves judgment, flexible decisions, or varying responses. Give an AI Agent node tools and clear prompt rules so it picks the best path automatically.";
+      }
+
+      document.getElementById("res-agent-icon").textContent = icon;
+      document.getElementById("res-agent-title").textContent = title;
+      document.getElementById("res-agent-desc").textContent = desc;
+
+      // Collect Tools
+      const matchedToolNames = new Set();
+      plannerState.selectedJobs.forEach(id => {
+        const job = plannerJobs.find(j => j.id === id);
+        if (job) job.tools.forEach(t => matchedToolNames.add(t));
       });
 
-      if (missingSignals.length > 0) {
-        return `None of your tools covers this part yet: "${missingSignals.slice(0, 2).join(' and ')}" mentioned in your description was not ticked.`;
-      }
-      return null;
-    }
-
-    function handleShowPlan() {
-      const plan = calculatePlan();
-      if (!plan) return;
-
-      state.currentPlan = plan;
-      renderResult(plan);
-
-      formView.classList.add('hidden');
-      resultView.classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function renderResult(plan) {
-      document.getElementById('result-project-name').textContent = plan.projectName;
-      const descEl = document.getElementById('result-project-desc');
-      if (plan.projectDesc) {
-        descEl.textContent = plan.projectDesc;
-        descEl.classList.remove('hidden');
-      } else {
-        descEl.classList.add('hidden');
-      }
-
-      const uncoveredEl = document.getElementById('result-uncovered-alert');
-      if (plan.unhandledCheck) {
-        uncoveredEl.textContent = plan.unhandledCheck;
-        uncoveredEl.classList.remove('hidden');
-      } else {
-        uncoveredEl.classList.add('hidden');
-      }
-
-      const toolsContainer = document.getElementById('result-tools-container');
-      toolsContainer.innerHTML = '';
-
-      const familyOrder = ['chat', 'maker', 'automation', 'builder', 'voice', 'everyday'];
-
-      familyOrder.forEach(famKey => {
-        const items = plan.groupedTools[famKey];
-        if (!items || items.length === 0) return;
-
-        const famMeta = TOOL_FAMILIES[famKey];
-        const groupSection = document.createElement('div');
-        groupSection.className = 'space-y-3';
-
-        groupSection.innerHTML = `
-          <div class="flex items-center gap-2">
-            <h4 class="text-base font-bold text-slate-800 uppercase tracking-wide text-xs">${famMeta.name}</h4>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-        `;
-
-        const grid = groupSection.querySelector('.grid');
-
-        items.forEach(item => {
-          const card = document.createElement('div');
-          card.className = `p-4 rounded-xl shadow-sm border border-slate-200 card-family-${famKey} flex flex-col justify-between`;
-          
-          const reasonsList = [...new Set(item.reasons)];
-          const whyPicked = reasonsList.length === 1 
-            ? reasonsList[0] 
-            : reasonsList.join(' • ');
-
-          card.innerHTML = `
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-1.5">
-                <h5 class="text-lg font-bold text-slate-900">${item.def.name}</h5>
-                <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold badge-family">${famMeta.name}</span>
-              </div>
-              <p class="text-slate-600 text-sm mb-3 leading-relaxed">${item.def.whatItIs}</p>
-            </div>
-            <div class="pt-3 border-t border-slate-100 space-y-1.5 text-xs">
-              <div class="text-slate-700">
-                <span class="font-bold text-slate-900">Why it was picked:</span> ${whyPicked}
-              </div>
-              <div class="text-slate-500">
-                <span class="font-bold text-slate-700">Cost note:</span> 
-                <span class="${item.def.costNote.toLowerCase().includes('free') ? 'text-emerald-700 font-medium' : ''}">${item.def.costNote}</span>
-              </div>
-            </div>
-          `;
-          grid.appendChild(card);
-        });
-
-        toolsContainer.appendChild(groupSection);
-      });
-
-      const agentTitleEl = document.getElementById('result-agent-title');
-      const agentReasonEl = document.getElementById('result-agent-reason');
-      const agentIconEl = document.getElementById('result-agent-icon');
-
-      agentTitleEl.textContent = plan.agentRecommendation.title;
-      agentReasonEl.textContent = plan.agentRecommendation.reason;
-
-      if (plan.agentRecommendation.isAgent) {
-        agentIconEl.innerHTML = `
-          <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl font-bold">
-            🤖
-          </div>
-        `;
-      } else {
-        agentIconEl.innerHTML = `
-          <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-500 flex items-center justify-center text-2xl font-bold">
-            ✨
-          </div>
-        `;
-      }
-
-      const buildOrderList = document.getElementById('result-build-order');
-      buildOrderList.innerHTML = '';
-      plan.orderedTools.forEach((toolItem, idx) => {
-        const li = document.createElement('li');
-        li.className = 'flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200';
-        li.innerHTML = `
-          <span class="w-6 h-6 rounded-full bg-slate-800 text-white font-bold text-xs flex items-center justify-center mt-0.5 shrink-0">
-            ${idx + 1}
-          </span>
+      const matchedTools = tools.filter(t => matchedToolNames.has(t.name));
+      const resToolsGrid = document.getElementById("res-tools-grid");
+      resToolsGrid.innerHTML = matchedTools.map(t => `
+        <div class="tool-card ${t.familyClass}">
           <div>
-            <span class="font-bold text-slate-900">${toolItem.def.name}</span>
-            <span class="text-slate-500 text-sm ml-1.5">(${toolItem.def.whatItIs})</span>
+            <div class="card-header">
+              <span class="tool-title">${t.name}</span>
+              <span class="badge-day">${t.origin}</span>
+            </div>
+            <p class="tool-desc">${t.description}</p>
+          </div>
+          <div class="card-meta">
+            <span class="meta-tag">${t.badge}</span>
+            <span class="meta-cost ${t.costType}">${t.cost}</span>
+          </div>
+        </div>
+      `).join('');
+
+      // Build Order
+      const steps = [];
+      steps.push("1. Test prompts and instructions in ChatGPT, Claude, or Gemini first.");
+      if (matchedToolNames.has("Gamma") || matchedToolNames.has("Google Flow + Veo") || matchedToolNames.has("Nano Banana")) {
+        steps.push("2. Generate all creative visual assets, slide decks, or video clips.");
+      }
+      if (matchedToolNames.has("n8n") || matchedToolNames.has("OpenAI Models")) {
+        steps.push("3. Assemble your automation workflow or agent in n8n while leaving triggers unpublished.");
+      }
+      if (matchedToolNames.has("Lovable") || matchedToolNames.has("Antigravity IDE")) {
+        steps.push("4. Build your web interface or front door and connect the webhook address.");
+      }
+      if (matchedToolNames.has("Retell AI")) {
+        steps.push("5. Connect telephone numbers, voices, and calendar functions last after thorough testing.");
+      }
+
+      document.getElementById("res-build-steps").innerHTML = steps.map((s, i) => `
+        <div class="order-step">
+          <div class="order-num">${i + 1}</div>
+          <div style="font-size: 0.95rem; color: #e2e8f0;">${s}</div>
+        </div>
+      `).join('');
+
+      // Switch to results view
+      document.getElementById("planner-form").style.display = "none";
+      document.getElementById("planner-result").style.display = "flex";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Back to Questions
+    document.getElementById("back-to-questions-btn").addEventListener("click", () => {
+      document.getElementById("planner-result").style.display = "none";
+      document.getElementById("planner-form").style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Reset Form
+    document.getElementById("reset-form-btn").addEventListener("click", () => {
+      document.getElementById("project-name").value = "";
+      document.getElementById("project-desc").value = "";
+      plannerState.selectedJobs.clear();
+      jobsContainer.querySelectorAll(".job-checkbox-card").forEach(c => {
+        c.classList.remove("selected");
+        c.querySelector("input").checked = false;
+      });
+      document.querySelectorAll(".radio-pill").forEach(p => p.classList.remove("selected"));
+      plannerState.qFlowchart = null;
+      plannerState.qJudgment = null;
+      plannerState.qSeveral = null;
+      document.getElementById("planner-alert").style.display = "none";
+    });
+
+    // Print
+    document.getElementById("print-result-btn").addEventListener("click", () => {
+      window.print();
+    });
+
+    // Populate Directory View
+    const grid = document.getElementById("toolsGrid");
+    const searchInput = document.getElementById("searchInput");
+    const categoryTabs = document.getElementById("categoryTabs");
+    const matrixBody = document.getElementById("matrixBody");
+    const countAll = document.getElementById("count-all");
+
+    countAll.textContent = tools.length;
+
+    function renderMatrix() {
+      matrixBody.innerHTML = matrixJobs.map(job => `
+        <tr>
+          <td><strong>${job.task}</strong></td>
+          <td><span class="tool-pill">${job.tool}</span></td>
+          <td style="color: var(--text-muted); font-family: monospace;">${job.day}</td>
+        </tr>
+      `).join('');
+    }
+
+    function renderTools(filterText = "", activeCategory = "all") {
+      const q = filterText.toLowerCase().trim();
+      const filtered = tools.filter(tool => {
+        const matchesCategory = (activeCategory === "all") || (tool.category === activeCategory);
+        const matchesSearch = !q || 
+          tool.name.toLowerCase().includes(q) ||
+          tool.description.toLowerCase().includes(q) ||
+          tool.origin.toLowerCase().includes(q) ||
+          tool.cost.toLowerCase().includes(q);
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
+            <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: #fff;">No tools found</h3>
+            <p>Try searching for a different keyword or select "All Tools".</p>
           </div>
         `;
-        buildOrderList.appendChild(li);
-      });
-
-      const lessonsContainer = document.getElementById('result-lessons-list');
-      lessonsContainer.innerHTML = '';
-      plan.lessonsList.forEach(lesson => {
-        const tag = document.createElement('span');
-        tag.className = 'inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 text-amber-900 border border-amber-200 rounded-lg text-sm font-semibold shadow-xs';
-        tag.innerHTML = `📖 <span>${lesson}</span>`;
-        lessonsContainer.appendChild(tag);
-      });
-
-      // Populate Alternate Free Resources for users without the course workbook
-      const externalResContainer = document.getElementById('result-external-resources');
-      if (externalResContainer) {
-        externalResContainer.innerHTML = '';
-        const pickedToolNames = plan.orderedTools.map(t => t.def.name);
-        const addedUrls = new Set();
-
-        pickedToolNames.forEach(name => {
-          const res = TOOL_RESOURCES[name];
-          if (res && !addedUrls.has(res.url)) {
-            addedUrls.add(res.url);
-            const card = document.createElement('a');
-            card.href = res.url;
-            card.target = '_blank';
-            card.rel = 'noopener noreferrer';
-            card.className = 'p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-indigo-50/50 hover:border-indigo-300 transition flex flex-col justify-between group no-underline text-inherit';
-            card.innerHTML = `
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-1">
-                  <span class="text-xs font-bold text-indigo-700 group-hover:underline flex items-center gap-1">
-                    🔗 ${res.title}
-                  </span>
-                  <span class="text-[10px] uppercase font-semibold px-1.5 py-0.5 rounded bg-white border border-slate-200 text-slate-500">Free</span>
-                </div>
-                <p class="text-xs text-slate-600 leading-relaxed">${res.tip}</p>
-              </div>
-              <div class="mt-2 text-[11px] font-semibold text-indigo-600 flex items-center gap-1">
-                <span>Open guide</span>
-                <span class="transition transform group-hover:translate-x-0.5">→</span>
-              </div>
-            `;
-            externalResContainer.appendChild(card);
-          }
-        });
-
-        // If no tool-specific resources were added, provide general beginner AI starters
-        if (addedUrls.size === 0) {
-          externalResContainer.innerHTML = `
-            <a href="https://learnprompting.org/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-indigo-50/50 hover:border-indigo-300 transition flex flex-col justify-between group">
-              <span class="text-xs font-bold text-indigo-700 group-hover:underline">🔗 LearnPrompting Free Beginner Guide</span>
-              <p class="text-xs text-slate-600 mt-1">A free open-source guide to prompting AI and building real workflows.</p>
-            </a>
-          `;
-        }
-      }
-
-      const rulesList = document.getElementById('result-rules-list');
-      rulesList.innerHTML = '';
-      plan.safetyRules.forEach(rule => {
-        const li = document.createElement('li');
-        li.className = 'flex items-start gap-2 text-slate-700 text-sm';
-        li.innerHTML = `
-          <span class="text-amber-600 font-bold mt-0.5">⚠️</span>
-          <span>${rule}</span>
-        `;
-        rulesList.appendChild(li);
-      });
-    }
-
-    function getSavedPlans() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        return raw ? JSON.parse(raw) : [];
-      } catch (e) {
-        return [];
-      }
-    }
-
-    function saveCurrentPlan() {
-      if (!state.currentPlan) return;
-
-      const plans = getSavedPlans();
-      const newEntry = {
-        id: Date.now().toString(),
-        projectName: state.currentPlan.projectName,
-        projectDesc: state.currentPlan.projectDesc,
-        tickedJobIds: state.currentPlan.tickedJobIds,
-        qFlowChart: state.currentPlan.qFlowChart,
-        qJudgment: state.currentPlan.qJudgment,
-        qSeveralAreas: state.currentPlan.qSeveralAreas,
-        date: state.currentPlan.date
-      };
-
-      plans.unshift(newEntry);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(plans));
-
-      renderSavedProjects();
-
-      const saveBtn = document.getElementById('save-plan-btn');
-      const originalText = saveBtn.innerHTML;
-      saveBtn.innerHTML = '✅ Saved!';
-      saveBtn.classList.add('bg-emerald-600', 'text-white');
-      setTimeout(() => {
-        saveBtn.innerHTML = originalText;
-        saveBtn.classList.remove('bg-emerald-600', 'text-white');
-      }, 2000);
-    }
-
-    function renderSavedProjects() {
-      const plans = getSavedPlans();
-      savedProjectsList.innerHTML = '';
-
-      if (plans.length === 0) {
-        emptySavedMsg.classList.remove('hidden');
         return;
       }
 
-      emptySavedMsg.classList.add('hidden');
-
-      plans.forEach(plan => {
-        const item = document.createElement('div');
-        item.className = 'flex items-center justify-between p-3.5 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition';
-        item.innerHTML = `
-          <div class="flex-1 min-w-0 pr-3">
-            <h5 class="font-bold text-slate-900 truncate text-base">${plan.projectName}</h5>
-            <p class="text-xs text-slate-500">${plan.date || 'Saved Plan'} • ${plan.tickedJobIds.length} jobs</p>
+      grid.innerHTML = filtered.map(tool => `
+        <div class="tool-card ${tool.familyClass}">
+          <div>
+            <div class="card-header">
+              <div class="tool-title">${tool.name}</div>
+              <span class="badge-day">${tool.origin}</span>
+            </div>
+            <p class="tool-desc">${tool.description}</p>
           </div>
-          <div class="flex items-center gap-2 shrink-0">
-            <button class="open-btn px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition cursor-pointer">
-              Open
-            </button>
-            <button class="delete-btn px-2.5 py-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 text-xs font-semibold transition cursor-pointer">
-              Delete
-            </button>
+          <div class="card-meta">
+            <span class="meta-tag">${tool.badge}</span>
+            <span class="meta-cost ${tool.costType}">${tool.cost}</span>
           </div>
-        `;
-
-        item.querySelector('.open-btn').addEventListener('click', () => {
-          loadSavedPlan(plan);
-        });
-
-        item.querySelector('.delete-btn').addEventListener('click', () => {
-          deleteSavedPlan(plan.id);
-        });
-
-        savedProjectsList.appendChild(item);
-      });
+        </div>
+      `).join('');
     }
 
-    function loadSavedPlan(saved) {
-      state.projectName = saved.projectName;
-      state.projectDesc = saved.projectDesc || '';
-      state.selectedJobs = new Set(saved.tickedJobIds || []);
-      state.qFlowChart = saved.qFlowChart || '';
-      state.qJudgment = saved.qJudgment || '';
-      state.qSeveralAreas = saved.qSeveralAreas || '';
+    let currentCategory = "all";
+    searchInput.addEventListener("input", (e) => renderTools(e.target.value, currentCategory));
+    categoryTabs.addEventListener("click", (e) => {
+      const btn = e.target.closest(".cat-btn");
+      if (!btn) return;
+      document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentCategory = btn.getAttribute("data-category");
+      renderTools(searchInput.value, currentCategory);
+    });
 
-      projectNameInput.value = state.projectName;
-      projectDescInput.value = state.projectDesc;
-
-      setRadioGroupValue('q-flowchart', state.qFlowChart);
-      setRadioGroupValue('q-judgment', state.qJudgment);
-      setRadioGroupValue('q-several', state.qSeveralAreas);
-
-      renderJobsList();
-      handleShowPlan();
-    }
-
-    function deleteSavedPlan(id) {
-      let plans = getSavedPlans();
-      plans = plans.filter(p => p.id !== id);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(plans));
-      renderSavedProjects();
-    }
-
-    async function handleAiSuggestion() {
-      const desc = projectDescInput.value.trim();
-      if (!desc) {
-        showAiStatus('Please write one or two sentences in the description box first!', 'warning');
-        projectDescInput.focus();
-        return;
-      }
-
-      showAiStatus('Analyzing your project description...', 'loading');
-
-      let matchedIds = [];
-
-      try {
-        if (window.ai && window.ai.languageModel) {
-          matchedIds = await callBuiltInAi(desc);
-        } else if (state.apiKey) {
-          matchedIds = await callGeminiApi(desc, state.apiKey);
-        } else {
-          const key = prompt(
-            'To use AI suggestions, you can enter a free Gemini API key (or press Cancel to let our built-in assistant match it right away):',
-            ''
-          );
-          if (key && key.trim()) {
-            state.apiKey = key.trim();
-            localStorage.setItem('gemini_api_key', state.apiKey);
-            matchedIds = await callGeminiApi(desc, state.apiKey);
-          } else {
-            matchedIds = smartLocalJobMatcher(desc);
-          }
-        }
-
-        if (matchedIds && matchedIds.length > 0) {
-          matchedIds.forEach(id => state.selectedJobs.add(id));
-          renderJobsList();
-          validationAlert.classList.add('hidden');
-          showAiStatus(`Suggested ${matchedIds.length} jobs for you! You can adjust them anytime.`, 'success');
-        } else {
-          showAiStatus('Could not match specific jobs. Please tick them manually.', 'warning');
-        }
-      } catch (err) {
-        matchedIds = smartLocalJobMatcher(desc);
-        if (matchedIds.length > 0) {
-          matchedIds.forEach(id => state.selectedJobs.add(id));
-          renderJobsList();
-          showAiStatus(`Suggested ${matchedIds.length} jobs for you! (Manual adjustment ready)`, 'success');
-        } else {
-          showAiStatus('Could not connect to AI. Please tick your jobs by hand.', 'error');
-        }
-      }
-    }
-
-    async function callBuiltInAi(text) {
-      const session = await window.ai.languageModel.create({
-        systemPrompt: "You match a project description to job IDs from 1 to 17. Return ONLY a JSON array of integers."
-      });
-      const promptText = `Project: "${text}"\nJobs:\n` + JOBS_LIST.map(j => `${j.id}: ${j.text}`).join('\n') + `\nReturn JSON array of numbers only, e.g. [1, 5].`;
-      const result = await session.prompt(promptText);
-      return parseJobNumbers(result);
-    }
-
-    async function callGeminiApi(text, key) {
-      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`;
-      const promptText = `Given this project description: "${text}"
-From the following list of 17 jobs, choose which ones are needed:
-${JOBS_LIST.map(j => `${j.id}: ${j.text}`).join('\n')}
-
-Respond ONLY with a JSON array of job ID numbers, like [1, 3, 8]. Do not include markdown codeblocks or extra words.`;
-
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: promptText }] }],
-          generationConfig: { temperature: 0.1 }
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('API request failed');
-      }
-
-      const data = await response.json();
-      const textOutput = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-      return parseJobNumbers(textOutput);
-    }
-
-    function parseJobNumbers(str) {
-      try {
-        const clean = str.replace(/```json/g, '').replace(/```/g, '').trim();
-        const parsed = JSON.parse(clean);
-        if (Array.isArray(parsed)) {
-          return parsed.filter(n => typeof n === 'number' && n >= 1 && n <= 17);
-        }
-      } catch (e) {
-        const matches = str.match(/\d+/g);
-        if (matches) {
-          return [...new Set(matches.map(Number))].filter(n => n >= 1 && n <= 17);
-        }
-      }
-      return [];
-    }
-
-    function smartLocalJobMatcher(text) {
-      const t = text.toLowerCase();
-      const matched = new Set();
-
-      if (t.includes('think') || t.includes('write') || t.includes('blog') || t.includes('article') || t.includes('idea') || t.includes('question') || t.includes('research')) matched.add(1);
-      if (t.includes('repeat') || t.includes('quality') || t.includes('routine') || t.includes('standard') || t.includes('skill')) matched.add(2);
-      if (t.includes('task') || t.includes('action item') || t.includes('asana') || (t.includes('meeting') && t.includes('notes'))) matched.add(3);
-      if (t.includes('slide') || t.includes('deck') || t.includes('presentation') || t.includes('pitch')) matched.add(4);
-      if (t.includes('picture') || t.includes('image') || t.includes('photo') || t.includes('logo') || t.includes('graphic') || t.includes('draw')) matched.add(5);
-      if (t.includes('video') || t.includes('ad') || t.includes('clip') || t.includes('commercial') || t.includes('reel') || t.includes('tiktok')) matched.add(6);
-      if (t.includes('voice') || t.includes('music') || t.includes('song') || t.includes('audio') || t.includes('sound') || t.includes('speak')) matched.add(7);
-      if (t.includes('form') || t.includes('sort') || t.includes('sheet') || t.includes('bucket') || t.includes('lead') || t.includes('survey')) matched.add(8);
-      if (t.includes('customer') || t.includes('ticket') || t.includes('support') || t.includes('message') || t.includes('escalat')) matched.add(9);
-      if (t.includes('my email') || t.includes('inbox') || (t.includes('talk') && t.includes('email'))) matched.add(10);
-      if (t.includes('calendar') && t.includes('meeting') && t.includes('email')) matched.add(11);
-      if (t.includes('record') || (t.includes('meeting') && (t.includes('transcribe') || t.includes('action')))) matched.add(12);
-      if (t.includes('web form') || t.includes('webhook') || (t.includes('form') && t.includes('automation'))) matched.add(13);
-      if (t.includes('website') || t.includes('web page') || t.includes('landing page') || t.includes('site') || t.includes('portfolio')) matched.add(14);
-      if (t.includes('phone') || t.includes('call') || t.includes('reception') || (t.includes('appointment') && t.includes('call'))) matched.add(15);
-      if (t.includes('book time') || t.includes('schedule') || t.includes('calendly') || t.includes('booking')) matched.add(16);
-      if (t.includes('connect') || t.includes('sync') || t.includes('api') || t.includes('integration') || t.includes('between apps')) matched.add(17);
-
-      if (matched.size === 0) {
-        matched.add(1);
-      }
-
-      return Array.from(matched);
-    }
-
-    function showAiStatus(msg, type) {
-      aiStatus.textContent = msg;
-      aiStatus.className = 'text-xs font-medium py-1.5 px-3 rounded-lg mt-2 inline-block transition';
-
-      if (type === 'loading') {
-        aiStatus.classList.add('bg-blue-50', 'text-blue-700', 'animate-pulse');
-      } else if (type === 'success') {
-        aiStatus.classList.add('bg-emerald-50', 'text-emerald-700');
-      } else if (type === 'warning') {
-        aiStatus.classList.add('bg-amber-50', 'text-amber-800');
-      } else {
-        aiStatus.classList.add('bg-red-50', 'text-red-700');
-      }
-
-      aiStatus.classList.remove('hidden');
-    }
-
-    function handleApiKeyModal() {
-      const currentKey = localStorage.getItem('gemini_api_key') || '';
-      const newKey = prompt('Enter your Gemini API key (stored securely in your browser):', currentKey);
-      if (newKey !== null) {
-        if (newKey.trim()) {
-          localStorage.setItem('gemini_api_key', newKey.trim());
-          state.apiKey = newKey.trim();
-          alert('API Key saved safely in your browser local storage!');
-        } else {
-          localStorage.removeItem('gemini_api_key');
-          state.apiKey = '';
-          alert('API Key removed.');
-        }
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', init);
+    renderMatrix();
+    renderTools();
   </script>
 </body>
 </html>
