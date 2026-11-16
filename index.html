@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adelogic AI Tools Guide</title>
+  <meta name="description" content="A beginner-friendly, plain English guide to modern AI tools, automations, and practical workflows.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(22, 30, 49, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(30, 41, 69, 0.85);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.25);
+      --tag-bg: rgba(255, 255, 255, 0.06);
+      --accent-chat: #38bdf8;
+      --accent-maker: #fb923c;
+      --accent-auto: #2dd4bf;
+      --accent-web: #c084fc;
+      --accent-voice: #f472b6;
+      --radius: 16px;
+      --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.15), transparent),
+        radial-gradient(circle at 100% 100%, rgba(192, 132, 252, 0.08), transparent);
+      background-attachment: fixed;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      padding-top: 2rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #93c5fd;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-bottom: 1.25rem;
+    }
+
+    .badge::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #60a5fa;
+      box-shadow: 0 0 10px #60a5fa;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 2rem;
+      font-weight: 400;
+    }
+
+    /* Search & Filters Bar */
+    .controls {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.25rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .search-box {
+      position: relative;
+      margin-bottom: 1.25rem;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(10, 15, 29, 0.8);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1.1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      font-size: 1.1rem;
+    }
+
+    /* Category Buttons */
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .cat-btn {
+      padding: 0.6rem 1.15rem;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cat-btn:hover {
+      background: rgba(255, 255, 255, 0.09);
+      color: #fff;
+    }
+
+    .cat-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+
+    /* Grid of Tools */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .tool-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-4px);
+      background: var(--card-hover);
+      border-color: rgba(255, 255, 255, 0.16);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-top {
+      margin-bottom: 1rem;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+      gap: 0.5rem;
+    }
+
+    .tool-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .badge-day {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+    }
+
+    .tool-desc {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.82rem;
+    }
+
+    .meta-tag {
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      background: var(--tag-bg);
+      color: var(--text-muted);
+    }
+
+    .meta-cost {
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .cost-free {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+    }
+
+    .cost-paid {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+    }
+
+    .cost-info {
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+    }
+
+    /* Decision Helper Section */
+    .helper-section {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .helper-section h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .helper-section p.sec-desc {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    .matrix-table th {
+      text-align: left;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.04);
+      color: #94a3b8;
+      font-weight: 600;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .matrix-table td {
+      padding: 1.1rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+    }
+
+    .matrix-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .tool-pill {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(59, 130, 246, 0.18);
+      color: #93c5fd;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    /* Rules of Safety Banner */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .rule-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      padding: 1.25rem;
+      border-radius: 12px;
+    }
+
+    .rule-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .rule-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Empty state */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 1rem;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    footer a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container { padding: 1.5rem 1rem; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .matrix-table { font-size: 0.85rem; }
+      .matrix-table th, .matrix-table td { padding: 0.75rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge">Plain-English Reference</div>
+      <h1>Adelogic AI Tools Guide</h1>
+      <p class="subtitle">
+        Your interactive guide to modern AI tools, automations, and practical setups. Built for quick lookup and real-world clarity.
+      </p>
+    </header>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search any tool, task, or feature (e.g. video, email, sheets, free)...">
+      </div>
+      <div class="categories" id="categoryTabs">
+        <button class="cat-btn active" data-category="all">⚡ All Tools (<span id="count-all">0</span>)</button>
+        <button class="cat-btn" data-category="brains">🧠 AI Brains</button>
+        <button class="cat-btn" data-category="makers">🎨 Creative & Media</button>
+        <button class="cat-btn" data-category="automation">⚙️ Automation & Agents</button>
+        <button class="cat-btn" data-category="web">🌐 Web & Publishing</button>
+        <button class="cat-btn" data-category="voice">📞 Voice & Booking</button>
+        <button class="cat-btn" data-category="apps">🔌 Everyday Apps</button>
+      </div>
+    </div>
+
+    <!-- Tools Grid -->
+    <div class="tools-grid" id="toolsGrid">
+      <!-- Rendered dynamically via JavaScript -->
+    </div>
+
+    <!-- Which Tool for Which Job Section -->
+    <section class="helper-section">
+      <h2>Which Tool For Which Job?</h2>
+      <p class="sec-desc">A quick decision matrix: find what you want to achieve, and reach for the right tool.</p>
+      
+      <div style="overflow-x: auto;">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>If you want to...</th>
+              <th>Reach for this tool</th>
+              <th>Workbook Origin</th>
+            </tr>
+          </thead>
+          <tbody id="matrixBody">
+            <!-- Populated via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Essential Rules Section -->
+    <section class="helper-section" style="background: rgba(15, 23, 42, 0.4);">
+      <h2>Essential Safety Rules</h2>
+      <p class="sec-desc">Key principles to avoid mistakes, stay on free tiers, and keep data secure.</p>
+      
+      <div class="rules-grid">
+        <div class="rule-card">
+          <h3>🔑 1. API Keys are Passwords</h3>
+          <p>Treat keys like your bank PIN. Never share them in public links, code repositories, or chat screenshots.</p>
+        </div>
+        <div class="rule-card">
+          <h3>🔒 2. Read Permissions</h3>
+          <p>Plugs ask to read or write to Gmail, Asana, or Calendar. Always verify what access is granted before clicking Allow.</p>
+        </div>
+        <div class="rule-card">
+          <h3>🎯 3. Tell AI Not to Invent</h3>
+          <p>Always instruct AI models: "Never fabricate numbers or credentials. State clearly when information is missing."</p>
+        </div>
+        <div class="rule-card">
+          <h3>🧪 4. Test First, Publish Last</h3>
+          <p>Keep n8n automations inactive while building. Use safe test email accounts before turning live automation on.</p>
+        </div>
+        <div class="rule-card">
+          <h3>⏹️ 5. Turn Off Live Triggers</h3>
+          <p>Triggers checking inboxes or webhooks on a schedule consume credits. Switch them off when you finish testing.</p>
+        </div>
+        <div class="rule-card">
+          <h3>💳 6. Skip Payment Screens</h3>
+          <p>Start with free tiers and free credit allowances. Do not approve payment screens while learning.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 <strong>Adelogic AI Tools Guide</strong>. Developed with simplicity and clarity.</p>
+    </footer>
+  </div>
+
+  <script>
+    const tools = [
+      // AI Brains
+      {
+        name: "ChatGPT",
+        category: "brains",
+        badge: "Chat AI",
+        description: "OpenAI's chat app. Great for writing, summarizing, and reasoning. Connects to tools via plugins.",
+        cost: "Free plan available",
+        costType: "cost-free",
+        origin: "Day 1, Voice"
+      },
+      {
+        name: "Claude",
+        category: "brains",
+        badge: "Chat AI",
+        description: "Anthropic's thoughtful chat AI. Built-in Skill Creator and connectors to guide structured work.",
+        cost: "Free plan available",
+        costType: "cost-free",
+        origin: "Day 1, Voice"
+      },
+      {
+        name: "Claude Desktop",
+        category: "brains",
+        badge: "Desktop App",
+        description: "Claude installed locally on your computer. Can connect to custom plugs and local tools via MCP.",
+        cost: "Free to install",
+        costType: "cost-free",
+        origin: "Day 5"
+      },
+      {
+        name: "Gemini",
+        category: "brains",
+        badge: "Google Chat AI",
+        description: "Google's smart assistant. Direct access to prompt drafting and built-in image creation with Nano Banana.",
+        cost: "Free access",
+        costType: "cost-free",
+        origin: "Day 2"
+      },
+      {
+        name: "OpenAI Models",
+        category: "brains",
+        badge: "API Brain",
+        description: "Direct access to GPT-4.1 mini and GPT-5 mini brains inside workflows like n8n using an API key.",
+        cost: "Pay-as-you-go / Key",
+        costType: "cost-info",
+        origin: "Days 3, 4, 7, 8"
+      },
+
+      // Creative & Media
+      {
+        name: "Nano Banana",
+        category: "makers",
+        badge: "Image Generator",
+        description: "Picture maker inside Gemini. Describe what you need in plain words and it draws it for you.",
+        cost: "Free via Gemini",
+        costType: "cost-free",
+        origin: "Day 2"
+      },
+      {
+        name: "Google Flow + Veo",
+        category: "makers",
+        badge: "Video Studio",
+        description: "Google's video studio. Turns still photos and descriptions into moving video clips with sound.",
+        cost: "Free credits (~50)",
+        costType: "cost-info",
+        origin: "Day 2"
+      },
+      {
+        name: "Canva / CapCut",
+        category: "makers",
+        badge: "Video & Design Editor",
+        description: "User-friendly editors to arrange video clips, add audio, music, overlays, and export ads.",
+        cost: "Free plans available",
+        costType: "cost-free",
+        origin: "Day 2"
+      },
+      {
+        name: "Gamma",
+        category: "makers",
+        badge: "Slide Deck Builder",
+        description: "Builds full presentation decks from a text brief or meeting notes in minutes.",
+        cost: "Free tier available",
+        costType: "cost-free",
+        origin: "Day 1"
+      },
+      {
+        name: "ElevenLabs",
+        category: "makers",
+        badge: "Voice & Audio",
+        description: "Generates realistic, natural human voice-overs and sound effects from written text.",
+        cost: "Free credits",
+        costType: "cost-info",
+        origin: "Day 2"
+      },
+      {
+        name: "Suno",
+        category: "makers",
+        badge: "Music Generator",
+        description: "Generates background music, melodies, and songs from text prompts.",
+        cost: "Free tier available",
+        costType: "cost-free",
+        origin: "Day 2"
+      },
+
+      // Automation & Agents
+      {
+        name: "n8n",
+        category: "automation",
+        badge: "Visual Automation",
+        description: "Workflow builder where you connect boxes together on a canvas. Powers scheduled jobs, bots, and agents.",
+        cost: "Free signup / Self-host",
+        costType: "cost-free",
+        origin: "Days 3, 4, 5, 7, 8"
+      },
+      {
+        name: "Jerry (Agent Team)",
+        category: "automation",
+        badge: "Multi-Agent System",
+        description: "A manager agent in n8n that supervises three helper agents (Email, Calendar, and Meetings).",
+        cost: "Built inside n8n",
+        costType: "cost-free",
+        origin: "Day 7"
+      },
+      {
+        name: "Supergateway",
+        category: "automation",
+        badge: "Bridge Utility",
+        description: "Lightweight bridge program that connects Claude Desktop to an n8n MCP address smoothly.",
+        cost: "Free & Open Source",
+        costType: "cost-free",
+        origin: "Day 5"
+      },
+      {
+        name: "MCP (Model Context Protocol)",
+        category: "automation",
+        badge: "Universal Standard",
+        description: "The shared plug shape that lets AI models directly reach tools, files, and databases safely.",
+        cost: "Open Standard",
+        costType: "cost-free",
+        origin: "Days 1, 5"
+      },
+
+      // Web & Publishing
+      {
+        name: "Lovable",
+        category: "web",
+        badge: "Browser Web Builder",
+        description: "Build web pages and feedback forms by describing them in plain English. Publishes instantly.",
+        cost: "Free plan available",
+        costType: "cost-free",
+        origin: "Day 8"
+      },
+      {
+        name: "Antigravity IDE",
+        category: "web",
+        badge: "AI Coding App",
+        description: "Google's vibe coding app for Mac and Windows. Writes code, tests it, and fixes errors automatically.",
+        cost: "Free credits included",
+        costType: "cost-free",
+        origin: "Day 10"
+      },
+      {
+        name: "GitHub",
+        category: "web",
+        badge: "Code Storage",
+        description: "Secure cloud locker for your code. Keeps track of version history and connects directly to web hosts.",
+        cost: "Free account",
+        costType: "cost-free",
+        origin: "Days 1, 10"
+      },
+      {
+        name: "Vercel",
+        category: "web",
+        badge: "Hosting & Publishing",
+        description: "Hosts modern websites directly from GitHub and provides free, shareable public web links.",
+        cost: "Free Hobby Plan",
+        costType: "cost-free",
+        origin: "Day 10"
+      },
+
+      // Voice & Booking
+      {
+        name: "Retell AI",
+        category: "voice",
+        badge: "Voice Agent Builder",
+        description: "Creates conversational voice agents that answer telephone calls, speak naturally, and execute actions.",
+        cost: "Free trial credits",
+        costType: "cost-info",
+        origin: "Voice Agent"
+      },
+      {
+        name: "Cal.com",
+        category: "voice",
+        badge: "Online Scheduling",
+        description: "Smart booking calendar. Checks open slots and allows human callers or voice agents to schedule time.",
+        cost: "Free for individuals",
+        costType: "cost-free",
+        origin: "Voice Agent"
+      },
+
+      // Everyday Apps
+      {
+        name: "Google Sheets",
+        category: "apps",
+        badge: "Data & Logs",
+        description: "The central logbook for AI automations: stores contact leads, support tickets, and summaries.",
+        cost: "Free with Google",
+        costType: "cost-free",
+        origin: "Days 3, 4, 8"
+      },
+      {
+        name: "Gmail",
+        category: "apps",
+        badge: "Email Gateway",
+        description: "Used by AI agents to read incoming messages, draft replies, and send urgent team alerts.",
+        cost: "Free with Google",
+        costType: "cost-free",
+        origin: "Days 4, 5, 7, 8"
+      },
+      {
+        name: "Google Calendar",
+        category: "apps",
+        badge: "Scheduling",
+        description: "Directly receives appointment bookings created by telephone voice agents and n8n helpers.",
+        cost: "Free with Google",
+        costType: "cost-free",
+        origin: "Day 7, Voice"
+      },
+      {
+        name: "Asana",
+        category: "apps",
+        badge: "Task Management",
+        description: "Organizes action items, owners, and due dates created automatically from meeting notes by AI.",
+        cost: "Free plan available",
+        costType: "cost-free",
+        origin: "Day 1"
+      },
+      {
+        name: "Fireflies.ai",
+        category: "apps",
+        badge: "Meeting Notes",
+        description: "Records meetings and creates automated transcripts, summaries, and action checklists.",
+        cost: "Free tier available",
+        costType: "cost-info",
+        origin: "Day 7"
+      }
+    ];
+
+    const matrixJobs = [
+      { task: "Ask questions, brainstorm, or write drafts", tool: "ChatGPT, Claude, or Gemini", day: "Day 1" },
+      { task: "Turn messy meeting notes into clear tasks with owners", tool: "ChatGPT / Claude + Asana", day: "Day 1" },
+      { task: "Make presentation slide decks rapidly", tool: "Gamma + Skill file", day: "Day 1" },
+      { task: "Generate custom pictures from descriptions", tool: "Gemini (Nano Banana)", day: "Day 2" },
+      { task: "Create short video ads with motion & sound", tool: "Google Flow (Veo) + CapCut / Canva", day: "Day 2" },
+      { task: "Sort website enquiries & filter out spam into sheets", tool: "n8n + OpenAI + Google Sheets", day: "Day 3" },
+      { task: "Customer support triage bot (answers & alerts)", tool: "n8n AI Agent + Gmail + Google Sheets", day: "Day 4" },
+      { task: "Manage your personal inbox directly by talking to AI", tool: "Claude Desktop + n8n Gmail MCP", day: "Day 5" },
+      { task: "Team of AI assistants for emails, calendars & notes", tool: "n8n Multi-Agent (\"Jerry\")", day: "Day 7" },
+      { task: "Put a friendly web form in front of your automation", tool: "Lovable + n8n Webhook", day: "Day 8" },
+      { task: "Build and publish a complete website without coding", tool: "Antigravity + GitHub + Vercel", day: "Day 10" },
+      { task: "Automate incoming clinic or office phone appointments", tool: "Retell AI + Cal.com + Google Calendar", day: "Voice Agent" }
+    ];
+
+    // DOM Elements
+    const grid = document.getElementById("toolsGrid");
+    const searchInput = document.getElementById("searchInput");
+    const categoryTabs = document.getElementById("categoryTabs");
+    const matrixBody = document.getElementById("matrixBody");
+    const countAll = document.getElementById("count-all");
+
+    // Initialize counts
+    countAll.textContent = tools.length;
+
+    // Render Matrix
+    function renderMatrix() {
+      matrixBody.innerHTML = matrixJobs.map(job => `
+        <tr>
+          <td><strong>${job.task}</strong></td>
+          <td><span class="tool-pill">${job.tool}</span></td>
+          <td style="color: var(--text-muted); font-family: monospace;">${job.day}</td>
+        </tr>
+      `).join('');
+    }
+
+    // Render Tools
+    function renderTools(filterText = "", activeCategory = "all") {
+      const q = filterText.toLowerCase().trim();
+      
+      const filtered = tools.filter(tool => {
+        const matchesCategory = (activeCategory === "all") || (tool.category === activeCategory);
+        const matchesSearch = !q || 
+          tool.name.toLowerCase().includes(q) ||
+          tool.description.toLowerCase().includes(q) ||
+          tool.origin.toLowerCase().includes(q) ||
+          tool.cost.toLowerCase().includes(q);
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: #fff;">No tools found</h3>
+            <p>Try searching for a different keyword or select "All Tools".</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(tool => `
+        <div class="tool-card">
+          <div class="card-top">
+            <div class="card-header">
+              <div class="tool-title">${tool.name}</div>
+              <span class="badge-day">${tool.origin}</span>
+            </div>
+            <p class="tool-desc">${tool.description}</p>
+          </div>
+          <div class="card-meta">
+            <span class="meta-tag">${tool.badge}</span>
+            <span class="meta-cost ${tool.costType}">${tool.cost}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Event Listeners
+    let currentCategory = "all";
+
+    searchInput.addEventListener("input", (e) => {
+      renderTools(e.target.value, currentCategory);
+    });
+
+    categoryTabs.addEventListener("click", (e) => {
+      const btn = e.target.closest(".cat-btn");
+      if (!btn) return;
+
+      document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentCategory = btn.getAttribute("data-category");
+      renderTools(searchInput.value, currentCategory);
+    });
+
+    // Initial render
+    renderMatrix();
+    renderTools();
+  </script>
+</body>
+</html>

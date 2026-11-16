@@ -1,0 +1,24 @@
+# .gitignore
+# Ignore PDF files (LinkedIn profile, resumes, reference guides)
+*.pdf
+*resume*
+*Resume*
+*linkedin*
+*LinkedIn*
+
+# Ignore environment files and secret keys
+.env
+.env*.local
+*.key
+*.pem
+credentials.json
+
+# Dependencies
+node_modules/
+.agents/
+skills-lock.json
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
