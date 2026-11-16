@@ -49,14 +49,12 @@
       background-attachment: fixed;
     }
 
-    /* Container */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 2.5rem 1.5rem;
     }
 
-    /* Header */
     header {
       text-align: center;
       margin-bottom: 2.5rem;
@@ -106,7 +104,6 @@
       font-weight: 400;
     }
 
-    /* Navigation Mode Tabs */
     .view-switcher {
       display: inline-flex;
       background: rgba(15, 23, 42, 0.8);
@@ -144,7 +141,6 @@
       box-shadow: 0 4px 14px var(--primary-glow);
     }
 
-    /* Section styling */
     .section-card {
       background: var(--card-bg);
       backdrop-filter: blur(16px);
@@ -189,7 +185,6 @@
       font-size: 0.88rem;
     }
 
-    /* Form Inputs */
     .form-group {
       margin-bottom: 1.5rem;
     }
@@ -220,7 +215,6 @@
       box-shadow: 0 0 0 3px var(--primary-glow);
     }
 
-    /* Jobs Checklist */
     .jobs-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -285,7 +279,6 @@
       line-height: 1.45;
     }
 
-    /* Decision Questions Pills */
     .question-block {
       background: rgba(15, 23, 42, 0.5);
       border: 1px solid var(--card-border);
@@ -333,7 +326,6 @@
       box-shadow: 0 4px 12px var(--primary-glow);
     }
 
-    /* Action Buttons */
     .btn-row {
       display: flex;
       flex-wrap: wrap;
@@ -375,6 +367,9 @@
       font-weight: 600;
       cursor: pointer;
       transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
     .btn-secondary:hover {
@@ -382,7 +377,6 @@
       color: #fff;
     }
 
-    /* Result View Cards */
     .result-container {
       display: flex;
       flex-direction: column;
@@ -442,7 +436,83 @@
       flex-shrink: 0;
     }
 
-    /* Directory Styles (from Initial Design) */
+    /* Free Guides Grid */
+    .free-guides-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .free-guide-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .free-guide-card:hover {
+      background: rgba(59, 130, 246, 0.12);
+      border-color: rgba(59, 130, 246, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .free-guide-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #93c5fd;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .free-guide-tip {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 0.75rem;
+    }
+
+    .free-guide-cta {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #60a5fa;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* Saved Plans list in drawer */
+    .saved-plans-container {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .saved-plan-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.1rem;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      transition: var(--transition);
+    }
+
+    .saved-plan-item:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Directory Styles */
     .controls {
       background: rgba(15, 23, 42, 0.7);
       backdrop-filter: blur(16px);
@@ -622,7 +692,6 @@
       color: #f87171;
     }
 
-    /* Helper matrix */
     .matrix-table {
       width: 100%;
       border-collapse: collapse;
@@ -697,7 +766,6 @@
       color: #fcd34d;
     }
 
-    /* Print styling */
     @media print {
       body {
         background: white !important;
@@ -826,9 +894,21 @@
           </div>
 
           <div class="btn-row">
-            <button type="button" class="btn-secondary" id="reset-form-btn">Reset All</button>
-            <button type="button" class="btn-primary" id="generate-plan-btn">Generate My Plan 🚀</button>
+            <button type="button" class="btn-secondary" id="form-start-over-btn">🔄 Start over</button>
+            <button type="button" class="btn-primary" id="generate-plan-btn">Show my plan 🚀</button>
           </div>
+        </section>
+
+        <!-- Saved Projects Section -->
+        <section class="section-card" style="background: rgba(15, 23, 42, 0.45);">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+            <h4 style="font-size: 1.15rem; font-weight: 700; color: #fff;">Saved Projects</h4>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Saved in this browser</span>
+          </div>
+          <div id="saved-plans-list" class="saved-plans-container"></div>
+          <p id="empty-saved-msg" style="font-size: 0.88rem; color: var(--text-muted); font-style: italic; margin-top: 0.5rem;">
+            No saved plans yet. Build a plan and click "Save plan" to keep it here!
+          </p>
         </section>
 
       </div>
@@ -837,12 +917,16 @@
       <div id="planner-result" class="result-container" style="display: none;">
         
         <div class="btn-row no-print" style="margin-top: 0; margin-bottom: 1rem;">
-          <button type="button" class="btn-secondary" id="back-to-questions-btn">← Edit Answers</button>
-          <button type="button" class="btn-primary" id="print-result-btn" style="padding: 0.65rem 1.4rem; font-size: 0.95rem;">🖨️ Print Plan</button>
+          <button type="button" class="btn-secondary" id="back-to-questions-btn">← Edit my answers</button>
+          <div style="display: flex; gap: 0.6rem; align-items: center;">
+            <button type="button" class="btn-secondary" id="save-plan-btn">💾 Save plan</button>
+            <button type="button" class="btn-secondary" id="print-result-btn">🖨️ Print</button>
+            <button type="button" class="btn-secondary" id="result-start-over-btn">Start over</button>
+          </div>
         </div>
 
         <section class="result-card">
-          <div class="badge" style="margin-bottom: 0.75rem;">Your Custom Blueprint</div>
+          <div class="badge" style="margin-bottom: 0.75rem;">Your AI Project Plan</div>
           <h2 id="res-project-name" style="font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;"></h2>
           <p id="res-project-desc" style="color: var(--text-muted); font-size: 1.05rem;"></p>
         </section>
@@ -870,6 +954,27 @@
           <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 1rem;">Build In This Order</h3>
           <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.25rem;">Always start with prompt testing, build connections second, and voice phone connections last.</p>
           <div id="res-build-steps"></div>
+        </section>
+
+        <!-- Lessons to Reopen (Course Curriculum) -->
+        <section class="result-card">
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">Lessons to reopen</h3>
+          <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1rem;">Open these course workbook days if you are following the curriculum:</p>
+          <div id="res-lessons-tags" style="display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.5rem;"></div>
+
+          <!-- Don't have the course workbook? Section -->
+          <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+              <span style="font-size: 1.2rem;">🌐</span>
+              <h4 style="font-size: 1.05rem; font-weight: 700; color: #93c5fd;">
+                Don't have the course workbook? Free official guides to start today:
+              </h4>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Anyone can build this plan without the workbook! Here are the official free step-by-step beginner guides and tutorials for the tools picked for you:
+            </p>
+            <div id="res-free-guides" class="free-guides-grid"></div>
+          </div>
         </section>
 
       </div>
@@ -1208,23 +1313,142 @@
 
     // Checklist Jobs for Interactive Planner
     const plannerJobs = [
-      { id: 1, text: "Ask questions, write, or brainstorm ideas", tools: ["ChatGPT", "Claude", "Gemini"] },
-      { id: 2, text: "Get identical high quality every time I repeat a task", tools: ["Claude"] },
-      { id: 3, text: "Turn meeting notes into tasks with owners and dates", tools: ["ChatGPT", "Claude", "Asana"] },
-      { id: 4, text: "Make a presentation slide deck quickly", tools: ["Gamma"] },
-      { id: 5, text: "Generate custom photos or illustrations", tools: ["Gemini", "Nano Banana"] },
-      { id: 6, text: "Produce a short video ad with motion and sound", tools: ["Google Flow + Veo", "Canva / CapCut"] },
-      { id: 7, text: "Add voice-over narration or background music", tools: ["ElevenLabs", "Suno"] },
-      { id: 8, text: "Sort incoming web form submissions and filter spam", tools: ["n8n", "OpenAI Models", "Google Sheets"] },
-      { id: 9, text: "Log, reply to, and triage customer messages", tools: ["n8n", "Gmail", "Google Sheets"] },
-      { id: 10, text: "Handle my own email by talking to an AI on desktop", tools: ["Claude Desktop", "n8n", "Gmail"] },
-      { id: 11, text: "An assistant team for email, calendar, and notes", tools: ["n8n", "Jerry (Agent Team)"] },
-      { id: 12, text: "Record meetings and extract action items", tools: ["Fireflies.ai"] },
-      { id: 13, text: "Put a friendly web form in front of an automation", tools: ["Lovable", "n8n"] },
-      { id: 14, text: "Build and publish a full website without coding", tools: ["Antigravity IDE", "GitHub", "Vercel"] },
-      { id: 15, text: "Answer telephone calls and book clinic appointments", tools: ["Retell AI", "Cal.com", "Google Calendar"] },
-      { id: 16, text: "Let people book open meeting slots online", tools: ["Cal.com"] }
+      { id: 1, text: "Ask questions, write, or brainstorm ideas", tools: ["ChatGPT", "Claude", "Gemini"], lesson: "Day 1" },
+      { id: 2, text: "Get identical high quality every time I repeat a task", tools: ["Claude"], lesson: "Day 1" },
+      { id: 3, text: "Turn meeting notes into tasks with owners and dates", tools: ["ChatGPT", "Claude", "Asana"], lesson: "Day 1" },
+      { id: 4, text: "Make a presentation slide deck quickly", tools: ["Gamma"], lesson: "Day 1" },
+      { id: 5, text: "Generate custom photos or illustrations", tools: ["Gemini", "Nano Banana"], lesson: "Day 2" },
+      { id: 6, text: "Produce a short video ad with motion and sound", tools: ["Google Flow + Veo", "Canva / CapCut"], lesson: "Day 2" },
+      { id: 7, text: "Add voice-over narration or background music", tools: ["ElevenLabs", "Suno"], lesson: "Day 2" },
+      { id: 8, text: "Sort incoming web form submissions and filter spam", tools: ["n8n", "OpenAI Models", "Google Sheets"], lesson: "Day 3" },
+      { id: 9, text: "Log, reply to, and triage customer messages", tools: ["n8n", "Gmail", "Google Sheets"], lesson: "Day 4" },
+      { id: 10, text: "Handle my own email by talking to an AI on desktop", tools: ["Claude Desktop", "n8n", "Gmail"], lesson: "Day 5" },
+      { id: 11, text: "An assistant team for email, calendar, and notes", tools: ["n8n", "Jerry (Agent Team)"], lesson: "Day 7" },
+      { id: 12, text: "Record meetings and extract action items", tools: ["Fireflies.ai"], lesson: "Day 7" },
+      { id: 13, text: "Put a friendly web form in front of an automation", tools: ["Lovable", "n8n"], lesson: "Day 8" },
+      { id: 14, text: "Build and publish a full website without coding", tools: ["Antigravity IDE", "GitHub", "Vercel"], lesson: "Day 10" },
+      { id: 15, text: "Answer telephone calls and book clinic appointments", tools: ["Retell AI", "Cal.com", "Google Calendar"], lesson: "Voice Agent" },
+      { id: 16, text: "Let people book open meeting slots online", tools: ["Cal.com"], lesson: "Voice Agent" }
     ];
+
+    // External Free Beginner Resources catalog mapped by tool name
+    const TOOL_RESOURCES = {
+      "ChatGPT": {
+        title: "OpenAI ChatGPT Beginner Quickstart",
+        url: "https://help.openai.com/en/collections/3742473-chatgpt",
+        tip: "Learn how to prompt, write custom instructions, and brainstorm effectively."
+      },
+      "Claude": {
+        title: "Anthropic Claude Prompt Engineering Guide",
+        url: "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
+        tip: "Official guide to structuring clear tasks and skills that produce consistent quality."
+      },
+      "Claude Desktop": {
+        title: "Claude Desktop & Model Context Protocol (MCP)",
+        url: "https://modelcontextprotocol.io/quickstart",
+        tip: "Free tutorial on connecting Claude on your desktop to local files and Gmail tools."
+      },
+      "Gemini": {
+        title: "Google Gemini Learning Center",
+        url: "https://support.google.com/gemini",
+        tip: "Google's direct guide to prompting, research, and multimodal creation."
+      },
+      "OpenAI Models": {
+        title: "OpenAI Platform Documentation & Quickstart",
+        url: "https://platform.openai.com/docs/quickstart",
+        tip: "How to get an API key and plug OpenAI brains into automation tools."
+      },
+      "Nano Banana": {
+        title: "Gemini Image Generation Guide",
+        url: "https://support.google.com/gemini/answer/14286560",
+        tip: "How to prompt Gemini to generate clear illustrations and graphic assets."
+      },
+      "Google Flow + Veo": {
+        title: "Google DeepMind Veo Video Overview",
+        url: "https://deepmind.google/technologies/veo/",
+        tip: "Explore video generation prompting and storyboarding."
+      },
+      "Canva / CapCut": {
+        title: "Canva Design School & Video Editor",
+        url: "https://www.canva.com/designschool/tutorials/",
+        tip: "Free video courses on layouts, templates, and video editing."
+      },
+      "Gamma": {
+        title: "Gamma Help Center & Presentation Starter",
+        url: "https://support.gamma.app/",
+        tip: "How to paste outlines or notes and let AI produce professional slide decks."
+      },
+      "ElevenLabs": {
+        title: "ElevenLabs Voice Generation Quickstart",
+        url: "https://elevenlabs.io/docs/quickstart",
+        tip: "Step-by-step on generating lifelike narration and sound effects."
+      },
+      "Suno": {
+        title: "Suno AI Music Guide & Wiki",
+        url: "https://www.suno.wiki/",
+        tip: "Tips on music genre tags, lyrics structuring, and track creation."
+      },
+      "n8n": {
+        title: "n8n Official Beginner Academy (Free Courses)",
+        url: "https://academy.n8n.io/",
+        tip: "Hands-on beginner courses on building workflows, connecting apps, and making AI agents."
+      },
+      "Lovable": {
+        title: "Lovable Documentation & Community Templates",
+        url: "https://docs.lovable.dev/",
+        tip: "Learn how to prompt a full web app and connect forms to webhooks."
+      },
+      "Antigravity IDE": {
+        title: "Google Antigravity Getting Started Guide",
+        url: "https://github.com",
+        tip: "How to use agentic AI tools to build and edit code on your computer."
+      },
+      "GitHub": {
+        title: "GitHub Git Handbook & Hello World",
+        url: "https://docs.github.com/en/get-started/start-your-journey/hello-world",
+        tip: "A simple 10-minute guide to storing code and syncing projects online."
+      },
+      "Vercel": {
+        title: "Vercel Deployments Beginner Quickstart",
+        url: "https://vercel.com/docs/getting-started-with-vercel",
+        tip: "Free tutorial on publishing websites with one click from GitHub."
+      },
+      "Retell AI": {
+        title: "Retell AI Phone Agent Documentation",
+        url: "https://docs.retellai.com/",
+        tip: "How to connect a phone number and build your first spoken AI receptionist."
+      },
+      "Cal.com": {
+        title: "Cal.com Scheduling Setup Guide",
+        url: "https://cal.com/docs",
+        tip: "How to connect Google Calendar and create shareable booking links."
+      },
+      "Google Sheets": {
+        title: "Google Sheets Beginner Training",
+        url: "https://support.google.com/docs",
+        tip: "How to set up tables, headers, and tabs to receive automated rows from AI."
+      },
+      "Gmail": {
+        title: "Gmail Workflows & API Guides",
+        url: "https://support.google.com/mail",
+        tip: "Learn how email triggers work and how to securely authorize permissions."
+      },
+      "Google Calendar": {
+        title: "Google Calendar Support & API Settings",
+        url: "https://support.google.com/calendar",
+        tip: "Connect appointments, manage availability slots, and sync calendars."
+      },
+      "Asana": {
+        title: "Asana Academy: Getting Started with Projects",
+        url: "https://academy.asana.com/",
+        tip: "Free lessons on setting up task boards, owners, and due dates."
+      },
+      "Fireflies.ai": {
+        title: "Fireflies.ai Getting Started Guide",
+        url: "https://guide.fireflies.ai/",
+        tip: "How to invite the bot to Zoom/Meet and automatically receive action item summaries."
+      }
+    };
 
     const matrixJobs = [
       { task: "Ask questions, brainstorm, or write drafts", tool: "ChatGPT, Claude, or Gemini", day: "Day 1" },
@@ -1241,12 +1465,15 @@
       { task: "Automate incoming clinic or office phone appointments", tool: "Retell AI + Cal.com + Google Calendar", day: "Voice Agent" }
     ];
 
+    const STORAGE_KEY = 'adelogic_ai_planner_saved';
+
     // State
     const plannerState = {
       selectedJobs: new Set(),
       qFlowchart: null,
       qJudgment: null,
-      qSeveral: null
+      qSeveral: null,
+      currentPlan: null
     };
 
     // DOM Elements
@@ -1350,11 +1577,15 @@
       document.getElementById("res-agent-title").textContent = title;
       document.getElementById("res-agent-desc").textContent = desc;
 
-      // Collect Tools
+      // Collect Tools and Lessons
       const matchedToolNames = new Set();
+      const lessonsSet = new Set();
       plannerState.selectedJobs.forEach(id => {
         const job = plannerJobs.find(j => j.id === id);
-        if (job) job.tools.forEach(t => matchedToolNames.add(t));
+        if (job) {
+          job.tools.forEach(t => matchedToolNames.add(t));
+          if (job.lesson) lessonsSet.add(job.lesson);
+        }
       });
 
       const matchedTools = tools.filter(t => matchedToolNames.has(t.name));
@@ -1377,18 +1608,18 @@
 
       // Build Order
       const steps = [];
-      steps.push("1. Test prompts and instructions in ChatGPT, Claude, or Gemini first.");
+      steps.push("Test prompts and instructions in ChatGPT, Claude, or Gemini first.");
       if (matchedToolNames.has("Gamma") || matchedToolNames.has("Google Flow + Veo") || matchedToolNames.has("Nano Banana")) {
-        steps.push("2. Generate all creative visual assets, slide decks, or video clips.");
+        steps.push("Generate all creative visual assets, slide decks, or video clips.");
       }
       if (matchedToolNames.has("n8n") || matchedToolNames.has("OpenAI Models")) {
-        steps.push("3. Assemble your automation workflow or agent in n8n while leaving triggers unpublished.");
+        steps.push("Assemble your automation workflow or agent in n8n while leaving triggers unpublished.");
       }
       if (matchedToolNames.has("Lovable") || matchedToolNames.has("Antigravity IDE")) {
-        steps.push("4. Build your web interface or front door and connect the webhook address.");
+        steps.push("Build your web interface or front door and connect the webhook address.");
       }
       if (matchedToolNames.has("Retell AI")) {
-        steps.push("5. Connect telephone numbers, voices, and calendar functions last after thorough testing.");
+        steps.push("Connect telephone numbers, voices, and calendar functions last after thorough testing.");
       }
 
       document.getElementById("res-build-steps").innerHTML = steps.map((s, i) => `
@@ -1398,21 +1629,73 @@
         </div>
       `).join('');
 
-      // Switch to results view
+      // Populate Lessons Tags
+      document.getElementById("res-lessons-tags").innerHTML = Array.from(lessonsSet).map(l => `
+        <span style="padding: 0.35rem 0.85rem; border-radius: 8px; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.3); color: #fcd34d; font-size: 0.88rem; font-weight: 600;">
+          📖 ${l}
+        </span>
+      `).join('');
+
+      // Populate Don't Have the Course Workbook (Free Official Guides)
+      const freeGuidesContainer = document.getElementById("res-free-guides");
+      const renderedGuideUrls = new Set();
+      let guidesHtml = "";
+
+      matchedTools.forEach(t => {
+        const res = TOOL_RESOURCES[t.name];
+        if (res && !renderedGuideUrls.has(res.url)) {
+          renderedGuideUrls.add(res.url);
+          guidesHtml += `
+            <a href="${res.url}" target="_blank" rel="noopener noreferrer" class="free-guide-card">
+              <div>
+                <div class="free-guide-title">
+                  <span>🔗</span>
+                  <span>${res.title}</span>
+                </div>
+                <p class="free-guide-tip">${res.tip}</p>
+              </div>
+              <div class="free-guide-cta">
+                <span>Open free guide</span>
+                <span>→</span>
+              </div>
+            </a>
+          `;
+        }
+      });
+
+      if (!guidesHtml) {
+        guidesHtml = `
+          <a href="https://learnprompting.org/" target="_blank" rel="noopener noreferrer" class="free-guide-card">
+            <div>
+              <div class="free-guide-title">🔗 LearnPrompting Free Beginner Guide</div>
+              <p class="free-guide-tip">A free open-source guide to prompting AI and building real workflows.</p>
+            </div>
+            <div class="free-guide-cta">Open free guide →</div>
+          </a>
+        `;
+      }
+      freeGuidesContainer.innerHTML = guidesHtml;
+
+      // Save state object for current plan
+      plannerState.currentPlan = {
+        id: Date.now().toString(),
+        name: pName,
+        desc: pDesc,
+        tickedIds: Array.from(plannerState.selectedJobs),
+        qFlowchart: plannerState.qFlowchart,
+        qJudgment: plannerState.qJudgment,
+        qSeveral: plannerState.qSeveral,
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+      };
+
+      // Switch views
       document.getElementById("planner-form").style.display = "none";
       document.getElementById("planner-result").style.display = "flex";
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    // Back to Questions
-    document.getElementById("back-to-questions-btn").addEventListener("click", () => {
-      document.getElementById("planner-result").style.display = "none";
-      document.getElementById("planner-form").style.display = "block";
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
-    // Reset Form
-    document.getElementById("reset-form-btn").addEventListener("click", () => {
+    // Start Over logic
+    function handleStartOver() {
       document.getElementById("project-name").value = "";
       document.getElementById("project-desc").value = "";
       plannerState.selectedJobs.clear();
@@ -1424,13 +1707,130 @@
       plannerState.qFlowchart = null;
       plannerState.qJudgment = null;
       plannerState.qSeveral = null;
+      plannerState.currentPlan = null;
       document.getElementById("planner-alert").style.display = "none";
+      document.getElementById("planner-result").style.display = "none";
+      document.getElementById("planner-form").style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.getElementById("form-start-over-btn").addEventListener("click", handleStartOver);
+    document.getElementById("result-start-over-btn").addEventListener("click", handleStartOver);
+
+    // Back to Questions
+    document.getElementById("back-to-questions-btn").addEventListener("click", () => {
+      document.getElementById("planner-result").style.display = "none";
+      document.getElementById("planner-form").style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     // Print
     document.getElementById("print-result-btn").addEventListener("click", () => {
       window.print();
     });
+
+    // LocalStorage: Save Plan
+    function getSavedPlans() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function renderSavedPlans() {
+      const plans = getSavedPlans();
+      const listEl = document.getElementById("saved-plans-list");
+      const emptyEl = document.getElementById("empty-saved-msg");
+
+      if (plans.length === 0) {
+        emptyEl.style.display = "block";
+        listEl.innerHTML = "";
+        return;
+      }
+
+      emptyEl.style.display = "none";
+      listEl.innerHTML = plans.map(p => `
+        <div class="saved-plan-item" data-plan-id="${p.id}">
+          <div>
+            <div style="font-weight: 700; color: #fff; font-size: 0.95rem;">${p.name}</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">${p.date} • ${p.tickedIds.length} jobs picked</div>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn-secondary load-plan-btn" style="padding: 0.4rem 0.85rem; font-size: 0.82rem;">Open</button>
+            <button class="btn-secondary del-plan-btn" style="padding: 0.4rem 0.65rem; font-size: 0.82rem; color: #f87171;">✕</button>
+          </div>
+        </div>
+      `).join('');
+
+      listEl.querySelectorAll(".load-plan-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const item = e.target.closest(".saved-plan-item");
+          const planId = item.getAttribute("data-plan-id");
+          const plan = plans.find(p => p.id === planId);
+          if (plan) loadSavedPlan(plan);
+        });
+      });
+
+      listEl.querySelectorAll(".del-plan-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const item = e.target.closest(".saved-plan-item");
+          const planId = item.getAttribute("data-plan-id");
+          let updated = getSavedPlans().filter(p => p.id !== planId);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+          renderSavedPlans();
+        });
+      });
+    }
+
+    function loadSavedPlan(plan) {
+      document.getElementById("project-name").value = plan.name;
+      document.getElementById("project-desc").value = plan.desc;
+      
+      plannerState.selectedJobs = new Set(plan.tickedIds);
+      jobsContainer.querySelectorAll(".job-checkbox-card").forEach(c => {
+        const id = parseInt(c.getAttribute("data-job-id"));
+        const cb = c.querySelector("input");
+        if (plannerState.selectedJobs.has(id)) {
+          c.classList.add("selected");
+          cb.checked = true;
+        } else {
+          c.classList.remove("selected");
+          cb.checked = false;
+        }
+      });
+
+      function setPill(containerId, val, key) {
+        plannerState[key] = val;
+        const cont = document.getElementById(containerId);
+        cont.querySelectorAll(".radio-pill").forEach(p => {
+          if (p.getAttribute("data-value") === val) p.classList.add("selected");
+          else p.classList.remove("selected");
+        });
+      }
+
+      setPill("q-flowchart", plan.qFlowchart, "qFlowchart");
+      setPill("q-judgment", plan.qJudgment, "qJudgment");
+      setPill("q-several", plan.qSeveral, "qSeveral");
+
+      document.getElementById("generate-plan-btn").click();
+    }
+
+    document.getElementById("save-plan-btn").addEventListener("click", () => {
+      if (!plannerState.currentPlan) return;
+      const plans = getSavedPlans();
+      plans.unshift(plannerState.currentPlan);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(plans));
+      renderSavedPlans();
+
+      const btn = document.getElementById("save-plan-btn");
+      const orig = btn.innerHTML;
+      btn.innerHTML = "✅ Saved!";
+      setTimeout(() => { btn.innerHTML = orig; }, 2000);
+    });
+
+    renderSavedPlans();
 
     // Populate Directory View
     const grid = document.getElementById("toolsGrid");
