@@ -1,0 +1,42 @@
+name: Weekly AI Tools Auto-Update
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'   # Every Monday at 9am UTC
+  workflow_dispatch:        # Also allows manual trigger from GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  update-tools:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run AI tools update script
+        run: python scripts/update_tools.py
+        env:
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+
+      - name: Commit and push if new tools were added
+        run: |
+          git config user.name "Adelogic Bot"
+          git config user.email "bot@adelogic.ai"
+          git add index.html
+          if git diff --staged --quiet; then
+            echo "No new tools found this week."
+          else
+            git commit -m "Auto-add new AI tools $(date +%Y-%m-%d)"
+            git push
+          fi
