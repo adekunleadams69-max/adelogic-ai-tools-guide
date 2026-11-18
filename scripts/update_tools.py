@@ -179,10 +179,26 @@ def main():
         if name_lower in existing_names or name_lower in seen_this_run:
             continue
 
-        # Skip generic/non-tool pages
-        skip_words = ["reddit", "twitter", "youtube", "linkedin", "medium", "github.com/trending",
-                      "top 10", "best ai tools", "list of", "roundup", "comparison"]
+        # Skip generic/non-tool pages (listicles, articles, news aggregators)
+        skip_words = [
+            "reddit", "twitter", "youtube", "linkedin", "medium", "github.com/trending",
+            "top 10", "best ai", "top ai", "list of", "roundup", "comparison",
+            "in 2026", "for 2026", "tested", "reviewed", "game-changing", "tools that",
+            "announced in", "experience ai", "future tools", "our products",
+            "experimental tools", "google ai", "forbes", "techcrunch", "wired",
+            "venturebeat", "the verge", "zdnet", "cnet", "pcmag", "tomsguide",
+            "tools to", "tools for", "tools in", "tools that", "tools you",
+            "how to use", "how ai", "what is ai", "guide to"
+        ]
         if any(w in (raw_title + url).lower() for w in skip_words):
+            continue
+
+        # Name must be short — real tool names are rarely longer than 40 chars
+        if len(name) > 40:
+            continue
+
+        # Name must NOT contain colons (listicle titles always have them)
+        if ":" in name:
             continue
 
         # Must have a reasonable snippet
